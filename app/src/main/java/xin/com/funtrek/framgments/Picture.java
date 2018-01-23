@@ -1,17 +1,20 @@
 package xin.com.funtrek.framgments;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import xin.com.funtrek.R;
 import xin.com.funtrek.base.BaseFragment;
 import xin.com.funtrek.mvp.DaggerIComponent;
 import xin.com.funtrek.mvp.IModule;
 import xin.com.funtrek.mvp.picture.Picture_presenter;
 import xin.com.funtrek.mvp.picture.Picture_view;
-import xin.com.funtrek.mvp.video.Video_presenter;
-import xin.com.funtrek.mvp.video.Video_view;
 
 /**
  * date:2018/1/19  18:21
@@ -21,7 +24,9 @@ import xin.com.funtrek.mvp.video.Video_view;
 
 public class Picture extends BaseFragment<Picture_view, Picture_presenter> implements Picture_view {
     @Inject
-   Picture_presenter mVideoPresenter;
+    Picture_presenter mVideoPresenter;
+    @BindView(R.id.ss)
+    TextView mSs;
 
     @Override
     protected int setLayout() {
@@ -47,5 +52,9 @@ public class Picture extends BaseFragment<Picture_view, Picture_presenter> imple
     @Override
     protected void logic() {
 
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

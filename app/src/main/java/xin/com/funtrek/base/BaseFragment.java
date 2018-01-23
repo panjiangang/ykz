@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+import butterknife.ButterKnife;
 
 /**
  * date:2018/1/19  14:05
@@ -16,19 +19,18 @@ import android.view.ViewGroup;
 public abstract class BaseFragment<V, T extends BasePresenter<V>> extends Fragment {
     T presenter;
     View mView;
-
+    Unbinder unbinder;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (mView == null) {
             mView = inflater.inflate(setLayout(), container, false);
-            bridge();
+      unbinder = ButterKnife.bind(this, mView);
+
+        bridge();
             presenter = getPresenter();
-        }
         if (presenter != null) {
             presenter.attch((V) this);
         }
-
         initView(mView);
         logic();
         return mView;
@@ -48,5 +50,7 @@ public abstract class BaseFragment<V, T extends BasePresenter<V>> extends Fragme
     public void onDestroy() {
         super.onDestroy();
         presenter.disAttch();
+        unbinder.unbind();
+
 
     }}

@@ -26,6 +26,7 @@ import xin.com.funtrek.framgments.Picture;
 import xin.com.funtrek.framgments.Recommend;
 import xin.com.funtrek.framgments.Session;
 import xin.com.funtrek.framgments.Video;
+
 import xin.com.funtrek.mvp.DaggerIComponent;
 import xin.com.funtrek.mvp.IModule;
 import xin.com.funtrek.mvp.main.Main_presenter;
@@ -46,8 +47,8 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     FrameLayout mFrame;
     @BindView(R.id.navigatbar)
     BottomNavigationBar mNavigatbar;
-    @BindView(R.id.navigatview)
-    NavigationView mNavigatview;
+//    @BindView(R.id.navigatview)
+//    NavigationView mNavigatview;
     @BindView(R.id.main_drawlayout)
     DrawerLayout mMainDrawlayout;
     private Recommend mRecommend;
@@ -74,7 +75,6 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
 
     @Override
     protected void initView() {
-        ButterKnife.bind(this);
         if (mRecommend == null) {
             mRecommend = new Recommend();
         }
