@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1aa"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/login_return"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="15dp"
+        android:src="@drawable/return_white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/login_wx_onlick"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/login_btn_wx">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/login_wxdl"
+                android:background="#32CD32"
+                android:src="@drawable/wx_white" />
+
+            <TextView
+                android:id="@+id/login_wxdl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="10dp"
+                android:text="微信登录"
+                android:textColor="#fff"
+                android:textSize="19dp" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/login_qq_onlick"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/login_btn_qq">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="6dp"
+                android:layout_toLeftOf="@id/login_qqdl"
+                android:background="#00B2EE"
+                android:src="@drawable/qq_white" />
+
+            <TextView
+                android:id="@+id/login_qqdl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="10dp"
+                android:text="QQ登录"
+                android:textColor="#fff"
+                android:textSize="19dp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/login_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:text="其他登录"
+            android:textColor="#fff"
+            android:textSize="21dp" />
+    </LinearLayout>
+</LinearLayout>
