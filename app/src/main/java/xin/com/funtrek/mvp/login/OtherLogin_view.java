@@ -58,6 +58,7 @@ public class OtherLogin_view extends AppCompatActivity implements Login_presente
     @OnClick(R.id.other_visitorLogin)
     public void onOtherVisitorLoginClicked() {
         startActivity(new Intent(OtherLogin_view.this, MainActivity.class));
+        finish();
     }
 
     @Override

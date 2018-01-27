@@ -36,6 +36,7 @@ public class Register_view extends AppCompatActivity implements Login_presenter.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
+
         loginPresenter = new Login_presenter(this);
     }
 
@@ -67,5 +68,6 @@ public class Register_view extends AppCompatActivity implements Login_presenter.
     @OnClick(R.id.register_visitorLogin)
     public void onRegisterVisitorLoginClicked() {
         startActivity(new Intent(Register_view.this, MainActivity.class));
+        finish();
     }
 }
