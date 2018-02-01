@@ -1,5 +1,8 @@
 package xin.com.funtrek.activitys;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -26,7 +30,6 @@ import xin.com.funtrek.framgments.Session;
 
 import xin.com.funtrek.framgments.Video;
 import xin.com.funtrek.mvp.IModule;
-import xin.com.funtrek.mvp.DaggerIComponent;
 import xin.com.funtrek.mvp.main.Main_presenter;
 import xin.com.funtrek.mvp.main.Main_view;
 
@@ -45,10 +48,11 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     FrameLayout mFrame;
     @BindView(R.id.navigatbar)
     BottomNavigationBar mNavigatbar;
-//    @BindView(R.id.navigatview)
-//    NavigationView mNavigatview;
+
     @BindView(R.id.main_drawlayout)
     DrawerLayout mMainDrawlayout;
+    @BindView(R.id.nav_view)
+    NavigationView navView;
     private Recommend mRecommend;
     private Session mSession;
     private Video mVideo;
@@ -88,10 +92,22 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                         .setInactiveIconResource(R.drawable.video_defaults))
                 .initialise();
 
+
     }
 
     @Override
     protected void logic() {
+
+        ImageView user_img = navView.getHeaderView(0)
+                .findViewById(R.id.user_image);
+        user_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Login_view.class));
+            }
+        });
+
+
         mNavigatbar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
 
             private Picture mPicture;
@@ -171,5 +187,6 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
         // 记录当前的Fragment
         fm = ment;
     }
+
 
 }

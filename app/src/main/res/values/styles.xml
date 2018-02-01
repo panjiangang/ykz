@@ -6,6 +6,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/activityAnim</item>
+    </style>
+
+    <!-- 使用style方式定义activity切换动画 -->
+    <style name="activityAnim">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_open</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_in_close</item>
     </style>
 
 </resources>
