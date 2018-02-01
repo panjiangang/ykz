@@ -29,7 +29,9 @@ import xin.com.funtrek.framgments.Recommend;
 import xin.com.funtrek.framgments.Session;
 
 import xin.com.funtrek.framgments.Video;
+import xin.com.funtrek.mvp.DaggerIComponent;
 import xin.com.funtrek.mvp.IModule;
+import xin.com.funtrek.mvp.login.Login_view;
 import xin.com.funtrek.mvp.main.Main_presenter;
 import xin.com.funtrek.mvp.main.Main_view;
 

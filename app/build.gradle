@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "xin.com.funtrek"
-        minSdkVersion 24
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -19,12 +19,13 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
-    //bottom-navigation-bar
+
+//bottom-navigation-bar
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.4.1'
     //butterKnife
     compile 'com.jakewharton:butterknife:8.8.1'
@@ -48,6 +49,12 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:4.2.0'
     //recyclerVeiw
     compile 'com.android.support:recyclerview-v7:26.+'
+    //TabLayout
+    compile 'com.android.support:design:23.3.0'
+    //Fresco
+    compile 'com.facebook.fresco:fresco:0.12.0'
+    //jiecao
+    compile 'cn.jzvd:jiaozivideoplayer:6.0.0'
     //Bnaner
     compile 'com.youth.banner:banner:1.4.10'
     //沉浸式
