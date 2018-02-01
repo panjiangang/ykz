@@ -1,6 +1,5 @@
 package xin.com.funtrek.activitys;
 
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,17 +17,16 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xin.com.funtrek.R;
 import xin.com.funtrek.base.BaseActivity;
 import xin.com.funtrek.framgments.Picture;
 import xin.com.funtrek.framgments.Recommend;
 import xin.com.funtrek.framgments.Session;
-import xin.com.funtrek.framgments.Video;
 
-import xin.com.funtrek.mvp.DaggerIComponent;
+import xin.com.funtrek.framgments.Video;
 import xin.com.funtrek.mvp.IModule;
+import xin.com.funtrek.mvp.DaggerIComponent;
 import xin.com.funtrek.mvp.main.Main_presenter;
 import xin.com.funtrek.mvp.main.Main_view;
 
@@ -88,8 +86,6 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                         .setInactiveIconResource(R.drawable.duanzi_default))
                 .addItem(new BottomNavigationItem(R.drawable.video_select, "视频")
                         .setInactiveIconResource(R.drawable.video_defaults))
-                .addItem(new BottomNavigationItem(R.drawable.video_defaults, "趣图")
-                        .setInactiveIconResource(R.drawable.video_select))
                 .initialise();
 
     }
@@ -125,13 +121,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                         changeFragment(mVideo);
                         mTitle.setText("视频");
                         break;
-                    case 3:
-                        if (mPicture == null) {
-                            mPicture = new Picture();
-                        }
-                        changeFragment(mPicture);
-                        mTitle.setText("趣图");
-                        break;
+
                 }
 
             }

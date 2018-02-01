@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 
 
 public abstract class BaseFragment<V, T extends BasePresenter<V>> extends Fragment {
-    T presenter;
+    public T presenter;
     View mView;
     Unbinder unbinder;
     @Nullable

@@ -10,13 +10,10 @@ import xin.com.funtrek.mvp.DaggerIComponent;
 import xin.com.funtrek.mvp.IModule;
 import xin.com.funtrek.mvp.recommend.Recommend_presenter;
 import xin.com.funtrek.mvp.recommend.Recommend_view;
-
 /**
  * date:2018/1/19  18:21
  * author:Mr.XIn💕
  */
-
-
 public class Recommend extends BaseFragment<Recommend_view,Recommend_presenter>implements Recommend_view {
   @Inject
   Recommend_presenter mRecommend_presenter;
