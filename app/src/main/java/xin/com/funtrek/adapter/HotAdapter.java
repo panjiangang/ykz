@@ -1,6 +1,5 @@
 package xin.com.funtrek.adapter;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -16,7 +15,7 @@ import java.util.Random;
 
 import xin.com.funtrek.R;
 import xin.com.funtrek.activitys.VideoActivity;
-import xin.com.funtrek.bean.HotBean;
+import xin.com.funtrek.http.bean.HotBean;
 import xin.com.funtrek.framgments.videofragments.HotFragment;
 
 /**

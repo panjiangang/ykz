@@ -8,11 +8,8 @@ import xin.com.funtrek.R;
 import xin.com.funtrek.base.BaseFragment;
 import xin.com.funtrek.mvp.DaggerIComponent;
 import xin.com.funtrek.mvp.IModule;
-import xin.com.funtrek.mvp.recommend.Recommend_presenter;
-import xin.com.funtrek.mvp.recommend.Recommend_view;
 import xin.com.funtrek.mvp.session.Session_presenter;
 import xin.com.funtrek.mvp.session.Session_view;
-import xin.com.funtrek.mvp.video.Video_presenter;
 
 /**
  * date:2018/1/19  18:21

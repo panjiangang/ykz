@@ -1,4 +1,4 @@
-package xin.com.funtrek.bean;
+package xin.com.funtrek.http.bean;
 
 import java.io.Serializable;
 import java.util.List;

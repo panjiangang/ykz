@@ -8,8 +8,8 @@ import javax.inject.Inject;
  */
 
 
-public class Recommend_model {
+public class RecommendModel {
     @Inject
-    public Recommend_model() {
+    public RecommendModel() {
     }
 }

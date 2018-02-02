@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import xin.com.funtrek.bean.HotBean;
+import xin.com.funtrek.http.bean.HotBean;
 import xin.com.funtrek.http.ApiServce;
 import xin.com.funtrek.http.RetrofitUtils;
 

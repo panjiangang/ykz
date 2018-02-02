@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import xin.com.funtrek.R;
 import xin.com.funtrek.adapter.HotAdapter;
 import xin.com.funtrek.base.BaseFragment;
-import xin.com.funtrek.bean.HotBean;
+import xin.com.funtrek.http.bean.HotBean;
 import xin.com.funtrek.mvp.DaggerIComponent;
 import xin.com.funtrek.mvp.IModule;
 import xin.com.funtrek.mvp.video.Video_presenter;

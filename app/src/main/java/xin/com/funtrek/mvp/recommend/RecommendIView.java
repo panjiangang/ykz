@@ -6,5 +6,5 @@ package xin.com.funtrek.mvp.recommend;
  */
 
 
-public interface Recommend_view {
+public interface RecommendIView {
 }

@@ -17,7 +17,7 @@ import butterknife.OnClick;
 import cn.jzvd.JZVideoPlayer;
 import cn.jzvd.JZVideoPlayerStandard;
 import xin.com.funtrek.R;
-import xin.com.funtrek.bean.HotBean;
+import xin.com.funtrek.http.bean.HotBean;
 
 public class VideoActivity extends AppCompatActivity {
     @BindView(R.id.video_fanhui_hot)

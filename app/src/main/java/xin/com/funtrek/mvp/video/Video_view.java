@@ -1,6 +1,6 @@
 package xin.com.funtrek.mvp.video;
 
-import xin.com.funtrek.bean.HotBean;
+import xin.com.funtrek.http.bean.HotBean;
 
 /**
  * date:2018/1/19  14:18

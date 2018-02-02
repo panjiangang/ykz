@@ -18,10 +18,9 @@ class HttpInterceptor implements Interceptor {
 
         String s = request.url().toString();
 
-        Request build = request.newBuilder().url(s + "&source=android&appVersion=101&token=").build();
+        Request request1 = request.newBuilder().url(s + (s.contains("?") ? "&" : "?")
+                + "source=android&appVersion=101").build();
 
-        Response proceed = chain.proceed(build);
-
-        return proceed;
+        return chain.proceed(request1);
     }
 }

@@ -31,18 +31,18 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <FrameLayout
-            android:id="@+id/frame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"></FrameLayout>
-
-        <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        <com.hjm.bottomtabbar.BottomTabBar
             android:id="@+id/navigatbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </com.ashokvarma.bottomnavigation.BottomNavigationBar>
+            android:layout_height="match_parent"
+            app:tab_font_size="12dp"
+            app:tab_img_font_padding="0dp"
+            app:tab_img_height="38dp"
+            app:tab_img_width="38dp"
+            app:tab_isshow_divider="true"
+            app:tab_padding_top="8dp"
+            app:tab_selected_color="#1396db"
+            app:tab_unselected_color="#bfbfbf" />
 
     </LinearLayout>
 
@@ -58,14 +58,14 @@
             android:layout_height="0dp"
             android:layout_weight="7"
             app:headerLayout="@layout/nav_header"
-            app:menu="@menu/nav_menu"></android.support.design.widget.NavigationView>
+            app:menu="@menu/nav_menu" />
 
         <android.support.design.widget.NavigationView
             android:id="@+id/nav_view2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            app:headerLayout="@layout/nav_header2"></android.support.design.widget.NavigationView>
+            app:headerLayout="@layout/nav_header2" />
 
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

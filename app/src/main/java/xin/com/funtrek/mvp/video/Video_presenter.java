@@ -4,11 +4,9 @@ import javax.inject.Inject;
 
 import io.reactivex.functions.Consumer;
 import xin.com.funtrek.base.BasePresenter;
-import xin.com.funtrek.bean.HotBean;
+import xin.com.funtrek.http.bean.HotBean;
 import xin.com.funtrek.mvp.DaggerIComponent;
 import xin.com.funtrek.mvp.IModule;
-import xin.com.funtrek.mvp.recommend.Recommend_model;
-import xin.com.funtrek.mvp.recommend.Recommend_view;
 
 /**
  * date:2018/1/19  14:17
