@@ -54,6 +54,8 @@ dependencies {
     compile 'cn.jzvd:jiaozivideoplayer:6.0.0'
     //Bnaner
     compile 'com.youth.banner:banner:1.4.10'
+    //上拉下拉
+    compile 'com.liaoinstan.springview:library:1.3.0'
     //沉浸式
     compile 'com.jaeger.statusbaruitl:library:1.3.5'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
