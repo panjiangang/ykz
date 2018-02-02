@@ -21,28 +21,39 @@ public class RetrofitUtils {
 
     public RetrofitUtils() {
     }
-    public static RetrofitUtils getInstance(){
-        if(retrofitUtils == null){
-            synchronized (RetrofitUtils.class){
-                if(retrofitUtils == null){
+
+    public static RetrofitUtils getInstance() {
+        if (retrofitUtils == null) {
+            synchronized (RetrofitUtils.class) {
+                if (retrofitUtils == null) {
                     retrofitUtils = new RetrofitUtils();
                 }
             }
         }
         return retrofitUtils;
     }
-    private static Retrofit retrofit;
-    public static synchronized Retrofit getRetrofit(String url){
 
+    private static Retrofit retrofit;
+
+    public static synchronized Retrofit getRetrofit(String url) {
+
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+            @Override
+            public void log(String message) {
+                Log.i("XXX", message);
+            }
+        });
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new HttpInterceptor())
+                .addInterceptor(httpLoggingInterceptor)
                 .readTimeout(5000, TimeUnit.SECONDS)
-                .writeTimeout(5000,TimeUnit.SECONDS)
-                .connectTimeout(5000,TimeUnit.SECONDS)
+                .writeTimeout(5000, TimeUnit.SECONDS)
+                .connectTimeout(5000, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(false)
                 .build();
-        if(retrofit == null){
+        if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(url)
                     .client(okHttpClient)
@@ -54,7 +65,7 @@ public class RetrofitUtils {
         return retrofit;
     }
 
-    public <T>T getApiService(String url,Class<T> cl){
+    public <T> T getApiService(String url, Class<T> cl) {
         Retrofit retrofit = getRetrofit(url);
         return retrofit.create(cl);
     }
