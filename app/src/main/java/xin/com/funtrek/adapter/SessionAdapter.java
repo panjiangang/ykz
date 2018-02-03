@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import xin.com.funtrek.R;
 import xin.com.funtrek.activitys.SessionXQActivity;
 import xin.com.funtrek.http.bean.SessionBean;
@@ -36,19 +38,42 @@ public class SessionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-//        Glide.with(context).load(sessionBean.data.get(position)).into(((SessionViewHolder) holder).leftImg);
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+        Glide.with(context).load(sessionBean.data.get(position).imgUrls).into(((SessionViewHolder) holder).leftImg);
         ((SessionViewHolder) holder).nameText.setText(sessionBean.data.get(position).user.nickname);
         ((SessionViewHolder) holder).timeText.setText(sessionBean.data.get(position).createTime);
 //        Glide.with(context).load(sessionBean.data.get(position)).into(((SessionViewHolder)holder).rightImg);
 
-        ((SessionViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
+        ((SessionViewHolder) holder).leftImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SessionXQActivity.class);
+                intent.putExtra("uid", sessionBean.data.get(position).uid);
+                intent.putExtra("imgUrls",sessionBean.data.get(position).imgUrls+"");
                 context.startActivity(intent);
             }
         });
+
+        ((SessionViewHolder) holder).timeText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SessionXQActivity.class);
+                intent.putExtra("uid", sessionBean.data.get(position).uid);
+                intent.putExtra("imgUrls",sessionBean.data.get(position).imgUrls+"");
+                context.startActivity(intent);
+            }
+        });
+
+        ((SessionViewHolder) holder).nameText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, SessionXQActivity.class);
+                intent.putExtra("uid", sessionBean.data.get(position).uid);
+                intent.putExtra("imgUrls",sessionBean.data.get(position).imgUrls+"");
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override

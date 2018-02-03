@@ -12,6 +12,7 @@ import xin.com.funtrek.http.bean.HotBean;
 import xin.com.funtrek.http.bean.RecBannerBean;
 import xin.com.funtrek.http.bean.RecItemBean;
 import xin.com.funtrek.http.bean.SessionBean;
+import xin.com.funtrek.http.bean.SessionXQBean;
 
 /**
  * date:2018/1/19  14:21
@@ -32,4 +33,7 @@ public interface ApiServce {
 
     @GET("quarter/getJokes")
     Flowable<SessionBean> sessionUrl(@QueryMap Map<String, String> map);
+
+    @GET("/quarter/getUserVideos")
+    Flowable<SessionXQBean> sessionXqUrl(@QueryMap Map<String, String> map);
 }
