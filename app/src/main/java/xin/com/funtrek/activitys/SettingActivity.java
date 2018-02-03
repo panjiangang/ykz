@@ -38,9 +38,8 @@ public class SettingActivity extends AppCompatActivity {
         edit.putBoolean("login", false);
         edit.commit();
 
-        EventBus.getDefault().post(new MessageEvent(true));
+//        EventBus.getDefault().post(new MessageEvent(true));
         startActivity(new Intent(SettingActivity.this, Login_view.class));
-
         finish();
     }
 }
