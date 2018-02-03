@@ -32,6 +32,7 @@ public class ReleaseSuccessActivity extends AppCompatActivity {
 
     @OnClick(R.id.release_return)
     public void onReleaseReturnClicked() {
+        finish();
     }
 
     @OnClick(R.id.release_share)
@@ -45,5 +46,6 @@ public class ReleaseSuccessActivity extends AppCompatActivity {
 
     @OnClick(R.id.release_look_look)
     public void onReleaseLookLookClicked() {
+        startActivity(new Intent(ReleaseSuccessActivity.this, VideoActivity.class));
     }
 }
