@@ -108,6 +108,7 @@ public class SatinActivity extends AppCompatActivity {
                     Intent intent = new Intent(SatinActivity.this, ReleaseSuccessActivity.class);
                     intent.putExtra("mshare",satinEdit.getText().toString());
                     startActivity(intent);
+                    finish();
                 }
             }
 
