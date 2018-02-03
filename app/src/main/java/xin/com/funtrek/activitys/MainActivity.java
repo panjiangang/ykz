@@ -1,6 +1,9 @@
 package xin.com.funtrek.activitys;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,7 +14,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,9 +28,11 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xin.com.funtrek.R;
 import xin.com.funtrek.base.BaseActivity;
+import xin.com.funtrek.framgments.Picture;
 import xin.com.funtrek.framgments.Recommend;
 import xin.com.funtrek.framgments.Session;
 import xin.com.funtrek.framgments.Video;
@@ -45,6 +53,10 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     TextView mTitle;
     @BindView(R.id.publish)
     ImageView mPublish;
+    @BindView(R.id.frame)
+    FrameLayout mFrame;
+    //    @BindView(R.id.main_drawlayout)
+//    DrawerLayout mMainDrawlayout;
     @BindView(R.id.nav_view)
     NavigationView navView;
     @BindView(R.id.bottom_navigation_bar)
@@ -58,6 +70,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     private Video mVideo;
     private FragmentManager manager;
     private Fragment fm;
+    SharedPreferences sp;
     private FragmentTransaction mTransaction1;
     private Recommend mRecommend1;
     private LinearLayout mWorks;
@@ -86,11 +99,6 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
         }
         changeFragment(mRecommend);
         navBar();
-    }
-
-    @Override
-    protected void logic() {
-        mySide();
     }
 
     @OnClick({R.id.user_image1, R.id.publish})
@@ -136,7 +144,41 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                 .addItem(new BottomNavigationItem(R.drawable.video_select, "视频")
                         .setInactiveIconResource(R.drawable.video_defaults))
                 .initialise();
+    }
+
+    @SuppressLint("WrongConstant")
+    @Override
+    protected void logic() {
+        sp = getSharedPreferences("SharedPreferences", MODE_APPEND);
+        String uid = sp.getString("uid", "1730");
+        String token = sp.getString("token", "75B3A34ABE0ABC6A6BD05725E244365B");
+
+        ImageView user_img = navView.getHeaderView(0)
+                .findViewById(R.id.user_image);
+        user_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Login_view.class));
+            }
+        });
+
+        Switch aSwitch = mNavView2.getHeaderView(0).findViewById(R.id.day_night);
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Toast.makeText(MainActivity.this, "T", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "F", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
         mBottomNavBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
+
+            private Picture mPicture;
+
             @Override
             public void onTabSelected(int position) {
                 switch (position) {
@@ -177,6 +219,8 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
 
             }
         });
+
+        mySide();
     }
 
     public void mySide() {
@@ -195,21 +239,21 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.attention:
-                        startActivity(new Intent(MainActivity.this,MyConcern.class));
+                        startActivity(new Intent(MainActivity.this, MyConcern.class));
                         Toast.makeText(MainActivity.this, "关注", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.collect:
-                        startActivity(new Intent(MainActivity.this,CollectActivity.class));
+                        startActivity(new Intent(MainActivity.this, CollectActivity.class));
 
                         Toast.makeText(MainActivity.this, "收藏", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.friends:
-                        startActivity(new Intent(MainActivity.this,FriendsActivity.class));
+                        startActivity(new Intent(MainActivity.this, FriendsActivity.class));
 
                         Toast.makeText(MainActivity.this, "好友", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.message:
-                        startActivity(new Intent(MainActivity.this,MessageActivity.class));
+                        startActivity(new Intent(MainActivity.this, MessageActivity.class));
 
                         Toast.makeText(MainActivity.this, "通知", Toast.LENGTH_SHORT).show();
                         break;
@@ -232,6 +276,11 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                 Toast.makeText(MainActivity.this, "设置", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    @OnClick(R.id.publish)
+    public void onViewClicked() {
+        Intent intent = new Intent(this, CreateActivity.class);
+        startActivity(intent);
     }
 }
