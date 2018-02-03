@@ -3,10 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/hot_rec"
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/spring"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/hot_rec"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+    </com.liaoinstan.springview.widget.SpringView>
 
 </LinearLayout>

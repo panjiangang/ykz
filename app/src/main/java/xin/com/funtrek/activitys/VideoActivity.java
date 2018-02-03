@@ -35,21 +35,36 @@ public class VideoActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-        List<HotBean.DataBean> data = (List<HotBean.DataBean>) getIntent().getSerializableExtra("hotdata");
+        List<HotBean.DataBean> hotlist = (List<HotBean.DataBean>) getIntent().getSerializableExtra("Hotlist");
 
-        int hotposition = getIntent().getIntExtra("hotposition", 1);
+        int hotposition = getIntent().getIntExtra("Hotposition", 1);
 
-        simp.setImageURI(data.get(hotposition).getUser().getIcon());
+        List<HotBean.DataBean> vearbylist = (List<HotBean.DataBean>) getIntent().getSerializableExtra("Vearbylist");
+        int vearbyposition = getIntent().getIntExtra("Vearbyposition", 1);
 
-        videoplayer.setUp(data.get(hotposition).getVideoUrl(), JZVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "1111");
+        if(hotlist!=null){
+            simp.setImageURI(hotlist.get(hotposition).getUser().getIcon());
+
+            videoplayer.setUp(hotlist.get(hotposition).getVideoUrl(), JZVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "1111");
+        }
+        if(vearbylist!=null){
+            simp.setImageURI(vearbylist.get(vearbyposition).getUser().getIcon());
+
+            videoplayer.setUp(vearbylist.get(vearbyposition).getVideoUrl(), JZVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "1111");
+        }
 
     }
+
     @OnClick({R.id.video_fanhui_hot, R.id.share, R.id.simp})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+
             case R.id.video_fanhui_hot:
+
                 finish();
+
                 break;
+
             case R.id.share:
 
                 Intent textIntent = new Intent(Intent.ACTION_SEND);

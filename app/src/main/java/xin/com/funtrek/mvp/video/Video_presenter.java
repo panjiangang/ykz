@@ -24,11 +24,10 @@ public class Video_presenter extends BasePresenter<Video_view> {
     @Inject
     video_model mVideo_model;
 
-    public void gethttp() {
-        mVideo_model.getRetrofit(new Consumer<HotBean>() {
+    public void gethttp(int i,int i1,int i2) {
+        mVideo_model.getRetrofit(i,i1,i2,new Consumer<HotBean>() {
             @Override
             public void accept(HotBean hotBean) throws Exception {
-
                 getView().HotSuccess(hotBean);
 
             }

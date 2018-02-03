@@ -22,10 +22,10 @@ public class video_model {
 
     }
 
-    public void  getRetrofit(Consumer<HotBean> consumer,Consumer<Throwable> throwable){
+    public void  getRetrofit(int i,int i1,int i2,Consumer<HotBean> consumer,Consumer<Throwable> throwable){
 
         RetrofitUtils.getInstance().getApiService("https://www.zhaoapi.cn", ApiServce.class)
-                .hot(108+"",1+"",1+"")
+                .hot(i+"",i1+"",i2+"")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(consumer,throwable);

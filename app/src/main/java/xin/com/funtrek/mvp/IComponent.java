@@ -10,6 +10,7 @@ import xin.com.funtrek.framgments.Video;
 import xin.com.funtrek.framgments.recommends.RecAttentionFramgent;
 import xin.com.funtrek.framgments.recommends.RecHotFramgent;
 import xin.com.funtrek.framgments.videofragments.HotFragment;
+import xin.com.funtrek.framgments.videofragments.VearbyFragment;
 import xin.com.funtrek.mvp.recommend.RecHotPresenter;
 import xin.com.funtrek.mvp.video.Video_presenter;
 
@@ -32,6 +33,8 @@ public interface IComponent {
     void injectHotFragment(HotFragment hotFragment);
 
     void injectVideo_presenter(Video_presenter video_presenter);
+    void injectVearbyFragment(VearbyFragment vearbyFragment);
+
 
     void inject(RecHotFramgent reHotFramgent);
 

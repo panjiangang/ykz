@@ -17,6 +17,7 @@ import xin.com.funtrek.R;
 import xin.com.funtrek.activitys.VideoActivity;
 import xin.com.funtrek.http.bean.HotBean;
 import xin.com.funtrek.framgments.videofragments.HotFragment;
+import xin.com.funtrek.framgments.videofragments.VearbyFragment;
 
 /**
  * Created by D-H-F on 2018/01/26.
@@ -24,17 +25,21 @@ import xin.com.funtrek.framgments.videofragments.HotFragment;
 
 public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder> {
 
-    List<HotBean.DataBean> data = new ArrayList<>();
+    List<HotBean.DataBean> list = new ArrayList<>();
     HotFragment hotFragment;
     private View view;
+    VearbyFragment vearbyFragment;
     private List<Integer> heightList;
     public HotAdapter(HotFragment hotFragment) {
         this.hotFragment=hotFragment;
     }
-    public void add(List<HotBean.DataBean> data) {
-        this.data=data;
+    public HotAdapter(VearbyFragment vearbyFragment) {
+        this.vearbyFragment=vearbyFragment;
+    }
+    public void add(List<HotBean.DataBean> list) {
+        this.list=list;
         heightList = new ArrayList<>();
-        for (int i = 0; i < data.size(); i++) {
+        for (int i = 0; i < this.list.size(); i++) {
             int height = new Random().nextInt(200) + 300;//[100,300)的随机数
             heightList.add(height);
         }
@@ -42,31 +47,29 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder> {
     @Override
     public HotAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        view = View.inflate(hotFragment.getContext(), R.layout.videofragment_hotvideo, null);
+        view = View.inflate(parent.getContext(), R.layout.videofragment_hotvideo, null);
 
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final HotAdapter.ViewHolder holder, final int position) {
-        holder.simp.setImageURI(data.get(position).getCover());
+        holder.simp.setImageURI(list.get(position).getCover());
         ViewGroup.LayoutParams params = holder.simp.getLayoutParams();
         params.height=heightList.get(position);
         holder.simp.setLayoutParams(params);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(hotFragment.getActivity(), VideoActivity.class);
-                intent.putExtra("hotdata", (Serializable) data);
-                intent.putExtra("hotposition",position);
-                hotFragment.startActivity(intent);
+                onItemClickListener.onItemClick(position,list);
             }
         });
-        
+
+
     }
     @Override
     public int getItemCount() {
-        return data==null?0:data.size();
+        return list==null?0:list.size();
     }
 
 
@@ -78,4 +81,12 @@ public class HotAdapter extends RecyclerView.Adapter<HotAdapter.ViewHolder> {
         }
     }
 
+    onItemClickListener onItemClickListener;
+
+    public void setonItemClickListener( onItemClickListener onItemClickListener){
+        this.onItemClickListener=onItemClickListener;
+    }
+    public interface  onItemClickListener{
+        void onItemClick(int position,List<HotBean.DataBean> list);
+    }
 }
