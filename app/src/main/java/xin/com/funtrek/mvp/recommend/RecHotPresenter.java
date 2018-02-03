@@ -15,6 +15,7 @@ public class RecHotPresenter extends DdyPresenter<RecHotIView> {
 
     @Inject
     RecHotModel recHotModel;
+    int page = 1;
 
     @Inject
     RecHotPresenter() {
@@ -35,17 +36,27 @@ public class RecHotPresenter extends DdyPresenter<RecHotIView> {
         recHotModel.getAd(observer);
     }
 
-    public void getVideos() {
+    public void getVideos(final int page) {
 
         BaseDisposableObserver<RecItemBean> observer = new BaseDisposableObserver<RecItemBean>() {
             @Override
             public void onNext(RecItemBean recommendBean) {
                 super.onNext(recommendBean);
-                getIView().successVideos(recommendBean);
+                getIView().successVideos(recommendBean, page);
             }
         };
         add(observer);
 
-        recHotModel.getVideos(observer);
+        recHotModel.getVideos(observer, 1, page);
+    }
+
+    public void onRefresh() {
+        page = 1;
+        getVideos(page);
+    }
+
+    public void onLoadmore() {
+        page++;
+        getVideos(page);
     }
 }

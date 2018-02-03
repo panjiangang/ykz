@@ -30,6 +30,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.jzvd.JZVideoPlayerStandard;
 import xin.com.funtrek.R;
 import xin.com.funtrek.base.BaseActivity;
 import xin.com.funtrek.framgments.Picture;
@@ -282,5 +283,27 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     public void onViewClicked() {
         Intent intent = new Intent(this, CreateActivity.class);
         startActivity(intent);
+    }
+
+    /**
+     * backPress函数判断了点击回退按钮的相应，
+     * 如果全屏会退出全屏播放，如果不是全屏则会交给Activity
+     */
+    @Override
+    public void onBackPressed() {
+        if (JZVideoPlayerStandard.backPress()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    /**
+     * 暂停 /失去焦点
+     * Activity或者按Home键之后会视频就会releas(释放)
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JZVideoPlayerStandard.releaseAllVideos();
     }
 }

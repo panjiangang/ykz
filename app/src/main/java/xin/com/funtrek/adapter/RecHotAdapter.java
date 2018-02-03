@@ -18,6 +18,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.jzvd.JZVideoPlayer;
+import cn.jzvd.JZVideoPlayerStandard;
 import xin.com.funtrek.R;
 import xin.com.funtrek.http.bean.RecBannerBean;
 import xin.com.funtrek.http.bean.RecItemBean;
@@ -75,7 +77,8 @@ public class RecHotAdapter extends BaseAdapter {
             videosHolder.nickname.setText((String) videos.get(position).getUser().getNickname());
             videosHolder.createTime.setText(videos.get(position).getCreateTime());
             videosHolder.workDesc.setText(videos.get(position).getWorkDesc());
-            Glide.with(convertView).load(videos.get(position).getCover()).into(videosHolder.cover);
+
+            videosHolder.jzVideoPlayer.setUp(videos.get(position).getVideoUrl(), JZVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
 
             MyAnimation.add(videosHolder.iconOpen, videosHolder.report, videosHolder.copylink, videosHolder.shiled);
         }
@@ -100,8 +103,15 @@ public class RecHotAdapter extends BaseAdapter {
         }
     }
 
-    public void addVideos(RecItemBean recItemBean) {
-        videos = recItemBean.getData();
+    public void addVideos(RecItemBean recItemBean, int page) {
+
+        List<RecItemBean.DataBean> data = recItemBean.getData();
+
+        if (page == 1) {
+            videos = data;
+        } else {
+            videos.addAll(data);
+        }
     }
 
     static class AdHolder {
@@ -130,8 +140,8 @@ public class RecHotAdapter extends BaseAdapter {
         ImageView iconOpen;
         @BindView(R.id.workDesc)
         TextView workDesc;
-        @BindView(R.id.cover)
-        ImageView cover;
+        @BindView(R.id.vps)
+        JZVideoPlayerStandard jzVideoPlayer;
         @BindView(R.id.com_first)
         TextView comFirst;
         @BindView(R.id.com_second)

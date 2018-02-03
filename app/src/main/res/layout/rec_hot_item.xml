@@ -76,13 +76,10 @@
         android:text="workdesc"
         android:textSize="24dp" />
 
-    <ImageView
-        android:id="@+id/cover"
+    <cn.jzvd.JZVideoPlayerStandard
+        android:id="@+id/vps"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
-        android:scaleType="fitXY" />
+        android:layout_height="300dp" />
 
     <TextView
         android:id="@+id/com_first"
