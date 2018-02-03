@@ -1,7 +1,6 @@
 package xin.com.funtrek.activitys;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -23,7 +22,6 @@ import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xin.com.funtrek.R;
 import xin.com.funtrek.base.BaseActivity;
@@ -231,8 +229,4 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
         });
 
     }
-
-    ;
-
-
 }

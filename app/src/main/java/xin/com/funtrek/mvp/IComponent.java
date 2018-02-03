@@ -33,8 +33,8 @@ public interface IComponent {
     void injectHotFragment(HotFragment hotFragment);
 
     void injectVideo_presenter(Video_presenter video_presenter);
-    void injectVearbyFragment(VearbyFragment vearbyFragment);
 
+    void injectVearbyFragment(VearbyFragment vearbyFragment);
 
     void inject(RecHotFramgent reHotFramgent);
 
