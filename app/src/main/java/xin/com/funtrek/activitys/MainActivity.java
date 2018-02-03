@@ -110,7 +110,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                 break;
             case R.id.publish:
                 Intent intent = new Intent(this, CreateActivity.class);
-                startActivity(intent);
+                 startActivity(intent);
                 break;
         }
     }
