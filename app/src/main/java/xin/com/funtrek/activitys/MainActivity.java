@@ -56,8 +56,6 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     ImageView mPublish;
     @BindView(R.id.frame)
     FrameLayout mFrame;
-    //    @BindView(R.id.main_drawlayout)
-//    DrawerLayout mMainDrawlayout;
     @BindView(R.id.nav_view)
     NavigationView navView;
     @BindView(R.id.bottom_navigation_bar)
@@ -77,6 +75,9 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     private LinearLayout mWorks;
     private LinearLayout mSetting;
     private ImageView mUser_img;
+    private String mUsername;
+    private String mToken;
+    private String mUid;
 
     @Override
     protected int setLayout() {
@@ -101,7 +102,6 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
         changeFragment(mRecommend);
         navBar();
     }
-
     @OnClick({R.id.user_image1, R.id.publish})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -109,7 +109,8 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                 mMainDrawlayout.openDrawer(GravityCompat.START);
                 break;
             case R.id.publish:
-                //发表
+                Intent intent = new Intent(this, CreateActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -129,7 +130,6 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
             mTransaction1.show(ment);
         }
         mTransaction1.commit();
-
         // 记录当前的Fragment
         fm = ment;
     }
@@ -145,41 +145,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                 .addItem(new BottomNavigationItem(R.drawable.video_select, "视频")
                         .setInactiveIconResource(R.drawable.video_defaults))
                 .initialise();
-    }
-
-    @SuppressLint("WrongConstant")
-    @Override
-    protected void logic() {
-        sp = getSharedPreferences("SharedPreferences", MODE_APPEND);
-        String uid = sp.getString("uid", "1730");
-        String token = sp.getString("token", "75B3A34ABE0ABC6A6BD05725E244365B");
-
-        ImageView user_img = navView.getHeaderView(0)
-                .findViewById(R.id.user_image);
-        user_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Login_view.class));
-            }
-        });
-
-        Switch aSwitch = mNavView2.getHeaderView(0).findViewById(R.id.day_night);
-        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    Toast.makeText(MainActivity.this, "T", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "F", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
         mBottomNavBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
-
-            private Picture mPicture;
-
             @Override
             public void onTabSelected(int position) {
                 switch (position) {
@@ -189,7 +155,6 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                         }
                         changeFragment(mRecommend);
                         mTitle.setText("推荐");
-
                         break;
                     case 1:
                         if (mSession == null) {
@@ -205,28 +170,33 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                         changeFragment(mVideo);
                         mTitle.setText("视频");
                         break;
-
                 }
-
             }
-
             @Override
             public void onTabUnselected(int position) {
-
             }
-
             @Override
             public void onTabReselected(int position) {
-
             }
         });
-
+    }
+    @SuppressLint("WrongConstant")
+    @Override
+    protected void logic() {
+        sp = getSharedPreferences("SharedPreferences", MODE_APPEND);
+        mUid = sp.getString("uid", "1730");
+        mToken = sp.getString("token", "75B3A34ABE0ABC6A6BD05725E244365B");
+        mUsername = sp.getString("username", "");
         mySide();
     }
-
+//侧拉页面
     public void mySide() {
         navView.setItemIconTintList(null);
-
+        //获取用户名
+        TextView name = navView.getHeaderView(0)
+                .findViewById(R.id.user_name);
+        name.setText(mUsername);
+        //用户头像
         mUser_img = navView.getHeaderView(0)
                 .findViewById(R.id.user_image);
         mUser_img.setOnClickListener(new View.OnClickListener() {
@@ -235,6 +205,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                 startActivity(new Intent(MainActivity.this, Login_view.class));
             }
         });
+        //侧拉列表菜单
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -255,34 +226,42 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                         break;
                     case R.id.message:
                         startActivity(new Intent(MainActivity.this, MessageActivity.class));
-
                         Toast.makeText(MainActivity.this, "通知", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 return false;
             }
         });
+        //日夜间
+        Switch aSwitch = mNavView2.getHeaderView(0).findViewById(R.id.day_night);
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Toast.makeText(MainActivity.this, "T", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "F", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        //本地作品
         mWorks = mNavView2.getHeaderView(0).findViewById(R.id.works);
         mWorks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,productionActivity.class));
                 Toast.makeText(MainActivity.this, "本地", Toast.LENGTH_SHORT).show();
-
             }
         });
+        //跳转到设置页面
         mSetting = mNavView2.getHeaderView(0).findViewById(R.id.setting);
         mSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,SettingActivity.class));
                 Toast.makeText(MainActivity.this, "设置", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @OnClick(R.id.publish)
-    public void onViewClicked() {
-        Intent intent = new Intent(this, CreateActivity.class);
-        startActivity(intent);
     }
 
     /**
