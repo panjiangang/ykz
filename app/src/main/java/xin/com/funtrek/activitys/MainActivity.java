@@ -90,9 +90,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
 
     @Override
     protected void logic() {
-
         mySide();
-
     }
 
     @OnClick({R.id.user_image1, R.id.publish})
@@ -197,15 +195,22 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.attention:
+                        startActivity(new Intent(MainActivity.this,MyConcern.class));
                         Toast.makeText(MainActivity.this, "关注", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.collect:
+                        startActivity(new Intent(MainActivity.this,CollectActivity.class));
+
                         Toast.makeText(MainActivity.this, "收藏", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.friends:
+                        startActivity(new Intent(MainActivity.this,FriendsActivity.class));
+
                         Toast.makeText(MainActivity.this, "好友", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.message:
+                        startActivity(new Intent(MainActivity.this,MessageActivity.class));
+
                         Toast.makeText(MainActivity.this, "通知", Toast.LENGTH_SHORT).show();
                         break;
                 }
