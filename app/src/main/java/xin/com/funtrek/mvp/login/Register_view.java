@@ -85,6 +85,7 @@ public class Register_view extends AppCompatActivity implements Login_presenter.
                     edit.putString("uid", "" + bean.getData().getUid());
                     edit.putString("token", "" + bean.getData().getToken());
                     edit.putString("username", "" + bean.getData().getUsername());
+                    edit.putBoolean("login", true);
                     edit.commit();
                     startActivity(new Intent(Register_view.this, MainActivity.class));
                 }
@@ -114,6 +115,7 @@ public class Register_view extends AppCompatActivity implements Login_presenter.
         edit.putString("uid", "1730");
         edit.putString("token", "75B3A34ABE0ABC6A6BD05725E244365B");
         edit.putString("username", "游客登录");
+        edit.putBoolean("login", true);
         edit.commit();
         startActivity(new Intent(Register_view.this, MainActivity.class));
     }

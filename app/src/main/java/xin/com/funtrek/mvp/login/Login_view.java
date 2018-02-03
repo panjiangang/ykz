@@ -55,6 +55,10 @@ public class Login_view extends AppCompatActivity {
         sp = getSharedPreferences("SharedPreferences", MODE_APPEND);
         sp.getString("uid", "1730");
         sp.getString("token", "75B3A34ABE0ABC6A6BD05725E244365B");
+        boolean login = sp.getBoolean("login", false);
+        if (login) {
+            startActivity(new Intent(Login_view.this, MainActivity.class));
+        }
     }
 
     @OnClick(R.id.login_return)
@@ -98,6 +102,12 @@ public class Login_view extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putString("uid", "1730");
+                edit.putString("token", "75B3A34ABE0ABC6A6BD05725E244365B");
+                edit.putString("username", "QQ登录");
+                edit.putBoolean("login", true);
+                edit.commit();
                 startActivity(new Intent(Login_view.this, MainActivity.class));
             }
 
