@@ -20,16 +20,12 @@ import xin.com.funtrek.http.bean.SessionBean;
 
 
 public interface ApiServce {
-
     @GET("/quarter/getVideos")
     Observable<HotBean> hot(@Query("uid") String i, @Query("type") String i1, @Query("page") String i3);
-
     @GET("quarter/getAd")
     Observable<RecBannerBean> getAd();
-
     @GET("quarter/getVideos")
     Observable<RecItemBean> getVideos(@Query("type") int type, @Query("page") int page);
-
     @GET("quarter/getJokes")
     Flowable<SessionBean> sessionUrl(@QueryMap Map<String, String> map);
 }

@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -102,6 +103,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
         changeFragment(mRecommend);
         navBar();
     }
+
     @OnClick({R.id.user_image1, R.id.publish})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -110,7 +112,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                 break;
             case R.id.publish:
                 Intent intent = new Intent(this, CreateActivity.class);
-                 startActivity(intent);
+                startActivity(intent);
                 break;
         }
     }
@@ -172,24 +174,32 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                         break;
                 }
             }
+
             @Override
             public void onTabUnselected(int position) {
             }
+
             @Override
             public void onTabReselected(int position) {
             }
         });
     }
+
     @SuppressLint("WrongConstant")
     @Override
     protected void logic() {
         sp = getSharedPreferences("SharedPreferences", MODE_APPEND);
-        mUid = sp.getString("uid", "1730");
-        mToken = sp.getString("token", "75B3A34ABE0ABC6A6BD05725E244365B");
+        mUid = sp.getString("uid", "");
+        // 12272
+        Log.e("XXXXXXXXXXXX", mUid);
+        mToken = sp.getString("token", "");
+        //C625F5867FC5F65790AAD571784C748F
+        Log.e("XXXXXXXXXXXX", mToken);
         mUsername = sp.getString("username", "");
         mySide();
     }
-//侧拉页面
+
+    //侧拉页面
     public void mySide() {
         navView.setItemIconTintList(null);
         //获取用户名
@@ -249,7 +259,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
         mWorks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,productionActivity.class));
+                startActivity(new Intent(MainActivity.this, productionActivity.class));
                 Toast.makeText(MainActivity.this, "本地", Toast.LENGTH_SHORT).show();
             }
         });
@@ -258,7 +268,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
         mSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,SettingActivity.class));
+                startActivity(new Intent(MainActivity.this, SettingActivity.class));
                 Toast.makeText(MainActivity.this, "设置", Toast.LENGTH_SHORT).show();
             }
         });

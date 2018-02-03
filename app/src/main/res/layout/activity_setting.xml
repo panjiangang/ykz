@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="xin.com.funtrek.activitys.SettingActivity">
-
+<include layout="@layout/toolbarlayout"/>
     <Button
         android:id="@+id/setting_log_off"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="退出登录" />
 </LinearLayout>
+

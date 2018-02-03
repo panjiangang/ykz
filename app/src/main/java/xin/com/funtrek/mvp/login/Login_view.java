@@ -90,6 +90,7 @@ public class Login_view extends AppCompatActivity {
             public void onComplete(Object o) {
                 //登录成功后调用的方法
                 JSONObject jo = (JSONObject) o;
+                String s = jo.toString();
                 Toast.makeText(Login_view.this, "登录成功", Toast.LENGTH_SHORT).show();
                 Log.e("COMPLETE:", jo.toString());
                 String openID;
@@ -129,7 +130,6 @@ public class Login_view extends AppCompatActivity {
             public void onComplete(Object o) {
                 System.out.println("---------------------------------");
                 if (o == null) {
-
                     return;
                 }
                 try {
