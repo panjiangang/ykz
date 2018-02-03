@@ -28,9 +28,9 @@ public class RecHotModel {
                 .subscribe(observer);
     }
 
-    public void getVideos(BaseDisposableObserver<RecItemBean> observer) {
+    public void getVideos(BaseDisposableObserver<RecItemBean> observer, int type, int page) {
         ApiServce apiService = RetrofitUtils.getInstance().getApiService("https://www.zhaoapi.cn/", ApiServce.class);
-        Observable<RecItemBean> observable = apiService.getVideos(1, 1);
+        Observable<RecItemBean> observable = apiService.getVideos(type, page);
         observable.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(observer);

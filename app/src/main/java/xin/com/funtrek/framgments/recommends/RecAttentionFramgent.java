@@ -39,7 +39,7 @@ public class RecAttentionFramgent extends DdyFragment<RecHotIView, RecHotPresent
     @Override
     protected void init() {
         reHotFramgentPresenter.getAd();
-        reHotFramgentPresenter.getVideos();
+        reHotFramgentPresenter.getVideos(1);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class RecAttentionFramgent extends DdyFragment<RecHotIView, RecHotPresent
     }
 
     @Override
-    public void successVideos(RecItemBean recItemBean) {
+    public void successVideos(RecItemBean recItemBean, int page) {
 
     }
 }
