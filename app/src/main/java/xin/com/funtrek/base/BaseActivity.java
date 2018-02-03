@@ -17,7 +17,6 @@ import xin.com.funtrek.R;
 public abstract class BaseActivity<V, T extends BasePresenter<V>> extends AppCompatActivity {
     T presenter;
     private Unbinder bind;
-    private ImageView user_image;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +28,7 @@ public abstract class BaseActivity<V, T extends BasePresenter<V>> extends AppCom
         if (presenter != null) {
             presenter.attch((V) this);
         }
+
         initView();
         logic();
     }

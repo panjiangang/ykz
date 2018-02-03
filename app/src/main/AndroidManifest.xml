@@ -20,15 +20,20 @@
         <activity
             android:name=".activitys.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.login.Login_view">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.login.Login_view" />
         <activity android:name=".mvp.login.OtherLogin_view" />
+        <activity android:name=".activitys.CreateActivity" />
+        <activity android:name=".activitys.MovieActivity" />
+        <activity android:name=".activitys.SatinActivity" />
+
+        <!-- QQ登录 -->
         <activity android:name=".mvp.login.Register_view" />
         <activity
             android:name="com.tencent.tauth.AuthActivity"
@@ -44,6 +49,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activitys.SessionXQActivity" />
+        <activity android:name=".activitys.MyConcern" />
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -52,6 +58,13 @@
             android:name=".activitys.VideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
+        android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".activitys.ReleaseSuccessActivity" />
+        <activity android:name=".activitys.CollectActivity" />
+        <activity android:name=".activitys.FriendsActivity" />
+        <activity android:name=".activitys.MessageActivity" />
+        <activity android:name=".activitys.productionActivity" />
+        <activity android:name=".activitys.SettingActivity"></activity>
     </application>
 
 </manifest>

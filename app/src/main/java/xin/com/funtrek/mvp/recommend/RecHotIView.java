@@ -10,5 +10,5 @@ public interface RecHotIView {
 
     void successAd(RecBannerBean recBannerBean);
 
-    void successVideos(RecItemBean recItemBean);
+    void successVideos(RecItemBean recItemBean, int page);
 }

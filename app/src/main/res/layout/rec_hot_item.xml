@@ -6,8 +6,8 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -18,9 +18,10 @@
             app:roundAsCircle="true" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_toEndOf="@+id/icon"
+            android:layout_toRightOf="@+id/icon"
             android:orientation="vertical">
 
             <TextView
@@ -39,10 +40,34 @@
         </LinearLayout>
 
         <ImageView
+            android:id="@+id/shiled"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/shiled1" />
+
+        <ImageView
+            android:id="@+id/copylink"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:src="@drawable/copylink1" />
+
+        <ImageView
+            android:id="@+id/report"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/report1" />
+
+        <ImageView
+            android:id="@+id/icon_open"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
             android:src="@drawable/icon_open" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/workDesc"
@@ -51,13 +76,10 @@
         android:text="workdesc"
         android:textSize="24dp" />
 
-    <ImageView
-        android:id="@+id/cover"
+    <cn.jzvd.JZVideoPlayerStandard
+        android:id="@+id/vps"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
-        android:scaleType="fitXY" />
+        android:layout_height="300dp" />
 
     <TextView
         android:id="@+id/com_first"

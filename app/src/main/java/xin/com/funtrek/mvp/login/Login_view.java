@@ -1,6 +1,8 @@
 package xin.com.funtrek.mvp.login;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -42,12 +44,21 @@ public class Login_view extends AppCompatActivity {
     private IUiListener loginListener;
     private String SCOPE = "all";
     private IUiListener userInfoListener;
+    SharedPreferences sp;
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        sp = getSharedPreferences("SharedPreferences", MODE_APPEND);
+        sp.getString("uid", "1730");
+        sp.getString("token", "75B3A34ABE0ABC6A6BD05725E244365B");
+        boolean login = sp.getBoolean("login", false);
+        if (login) {
+            startActivity(new Intent(Login_view.this, MainActivity.class));
+        }
     }
 
     @OnClick(R.id.login_return)
@@ -55,17 +66,10 @@ public class Login_view extends AppCompatActivity {
         finish();
     }
 
-//    @OnClick(R.id.login_wx_onlick)
-//    public void onLoginWxOnlickClicked() {
-//    }
-//
-//    @OnClick(R.id.login_qq_onlick)
-//    public void onLoginQqOnlickClicked() {
-//    }
-
     @OnClick(R.id.login_other)
     public void onViewClicked() {
         startActivity(new Intent(Login_view.this, OtherLogin_view.class));
+        overridePendingTransition(R.anim.slide_in_open, R.anim.slide_in_other);
     }
 
     @OnClick(R.id.login_wxdl)
@@ -95,10 +99,16 @@ public class Login_view extends AppCompatActivity {
                     String expires = jo.getString("expires_in");
                     mTencent.setOpenId(openID);
                     mTencent.setAccessToken(accessToken, expires);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                SharedPreferences.Editor edit = sp.edit();
+                edit.putString("uid", "1730");
+                edit.putString("token", "75B3A34ABE0ABC6A6BD05725E244365B");
+                edit.putString("username", "QQ登录");
+                edit.putBoolean("login", true);
+                edit.commit();
+                startActivity(new Intent(Login_view.this, MainActivity.class));
             }
 
             @Override
@@ -117,7 +127,9 @@ public class Login_view extends AppCompatActivity {
         userInfoListener = new IUiListener() {
             @Override
             public void onComplete(Object o) {
+                System.out.println("---------------------------------");
                 if (o == null) {
+
                     return;
                 }
                 try {

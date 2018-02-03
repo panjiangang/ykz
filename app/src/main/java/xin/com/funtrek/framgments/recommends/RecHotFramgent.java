@@ -8,9 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.liaoinstan.springview.container.DefaultFooter;
+import com.liaoinstan.springview.container.DefaultHeader;
+import com.liaoinstan.springview.widget.SpringView;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.Unbinder;
 import xin.com.funtrek.R;
 import xin.com.funtrek.adapter.RecHotAdapter;
 import xin.com.funtrek.http.bean.RecBannerBean;
@@ -21,11 +26,14 @@ import xin.com.funtrek.mvp.recommend.RecHotPresenter;
 /**
  * @author ddy
  */
-public class RecHotFramgent extends DdyFragment<RecHotIView, RecHotPresenter> implements RecHotIView {
+public class RecHotFramgent extends DdyFragment<RecHotIView, RecHotPresenter> implements RecHotIView, SpringView.OnFreshListener {
     @Inject
     RecHotPresenter reHotFramgentPresenter;
     @BindView(R.id.lv)
     ListView lv;
+    @BindView(R.id.sv)
+    SpringView sv;
+    Unbinder unbinder;
     private RecHotAdapter recHotAdapter;
 
     @Nullable
@@ -41,16 +49,19 @@ public class RecHotFramgent extends DdyFragment<RecHotIView, RecHotPresenter> im
     @Override
     protected void init() {
 
+        sv.setHeader(new DefaultHeader(this.getActivity()));
+        sv.setFooter(new DefaultFooter(this.getActivity()));
+
         recHotAdapter = new RecHotAdapter();
         lv.setAdapter(recHotAdapter);
 
         reHotFramgentPresenter.getAd();
-        reHotFramgentPresenter.getVideos();
+        reHotFramgentPresenter.getVideos(1);
     }
 
     @Override
     protected void setListener() {
-
+        sv.setListener(this);
     }
 
     @Override
@@ -60,8 +71,19 @@ public class RecHotFramgent extends DdyFragment<RecHotIView, RecHotPresenter> im
     }
 
     @Override
-    public void successVideos(RecItemBean recItemBean) {
-        recHotAdapter.addVideos(recItemBean);
+    public void successVideos(RecItemBean recItemBean, int page) {
+        recHotAdapter.addVideos(recItemBean, page);
         recHotAdapter.notifyDataSetChanged();
+        sv.onFinishFreshAndLoad();
+    }
+
+    @Override
+    public void onRefresh() {
+        reHotFramgentPresenter.onRefresh();
+    }
+
+    @Override
+    public void onLoadmore() {
+        reHotFramgentPresenter.onLoadmore();
     }
 }

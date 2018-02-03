@@ -19,30 +19,6 @@ import xin.com.funtrek.http.bean.SessionBean;
 public class Session_model {
     @Inject
     public Session_model() {
-
-//        Map<String, String> map = new HashMap<>();
-//        map.put("page", "1");
-//        Api.getInstance().sessionUrl(map, new Observer<SessionBean>() {
-//            @Override
-//            public void onSubscribe(Disposable d) {
-//
-//            }
-//
-//            @Override
-//            public void onNext(SessionBean value) {
-//
-//            }
-//
-//            @Override
-//            public void onError(Throwable e) {
-//
-//            }
-//
-//            @Override
-//            public void onComplete() {
-//
-//            }
-//        });
     }
 
     public Flowable<SessionBean> getData() {
