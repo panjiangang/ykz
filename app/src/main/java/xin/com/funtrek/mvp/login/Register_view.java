@@ -67,7 +67,7 @@ public class Register_view extends AppCompatActivity implements Login_presenter.
     @Override
     public void lClick(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-        if (msg.equals("注册成功")){
+        if (msg.equals("注册成功")) {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("https://www.zhaoapi.cn")
                     .addConverterFactory(GsonConverterFactory.create())
@@ -84,6 +84,7 @@ public class Register_view extends AppCompatActivity implements Login_presenter.
                     SharedPreferences.Editor edit = sp.edit();
                     edit.putString("uid", "" + bean.getData().getUid());
                     edit.putString("token", "" + bean.getData().getToken());
+                    edit.putString("username", "" + bean.getData().getUsername());
                     edit.commit();
                     startActivity(new Intent(Register_view.this, MainActivity.class));
                 }
@@ -112,6 +113,7 @@ public class Register_view extends AppCompatActivity implements Login_presenter.
         SharedPreferences.Editor edit = sp.edit();
         edit.putString("uid", "1730");
         edit.putString("token", "75B3A34ABE0ABC6A6BD05725E244365B");
+        edit.putString("username", "游客登录");
         edit.commit();
         startActivity(new Intent(Register_view.this, MainActivity.class));
     }

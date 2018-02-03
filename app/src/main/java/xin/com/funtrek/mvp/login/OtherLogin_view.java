@@ -77,6 +77,7 @@ public class OtherLogin_view extends AppCompatActivity implements Login_presente
         SharedPreferences.Editor edit = sp.edit();
         edit.putString("uid", "1730");
         edit.putString("token", "75B3A34ABE0ABC6A6BD05725E244365B");
+        edit.putString("username", "游客登录");
         edit.commit();
         startActivity(new Intent(OtherLogin_view.this, MainActivity.class));
     }
@@ -101,6 +102,7 @@ public class OtherLogin_view extends AppCompatActivity implements Login_presente
                     SharedPreferences.Editor edit = sp.edit();
                     edit.putString("uid", "" + bean.getData().getUid());
                     edit.putString("token", "" + bean.getData().getToken());
+                    edit.putString("username", "" + bean.getData().getUsername());
                     edit.commit();
                     startActivity(new Intent(OtherLogin_view.this, MainActivity.class));
                 }
