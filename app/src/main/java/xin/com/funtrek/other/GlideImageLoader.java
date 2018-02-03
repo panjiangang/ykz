@@ -1,4 +1,4 @@
-package xin.com.funtrek.other.banner;
+package xin.com.funtrek.other;
 
 import android.content.Context;
 import android.widget.ImageView;

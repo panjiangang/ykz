@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -20,7 +21,8 @@ import butterknife.ButterKnife;
 import xin.com.funtrek.R;
 import xin.com.funtrek.http.bean.RecBannerBean;
 import xin.com.funtrek.http.bean.RecItemBean;
-import xin.com.funtrek.other.banner.GlideImageLoader;
+import xin.com.funtrek.other.GlideImageLoader;
+import xin.com.funtrek.other.MyAnimation;
 
 /**
  * @author ddy
@@ -74,6 +76,8 @@ public class RecHotAdapter extends BaseAdapter {
             videosHolder.createTime.setText(videos.get(position).getCreateTime());
             videosHolder.workDesc.setText(videos.get(position).getWorkDesc());
             Glide.with(convertView).load(videos.get(position).getCover()).into(videosHolder.cover);
+
+            MyAnimation.add(videosHolder.iconOpen, videosHolder.report, videosHolder.copylink, videosHolder.shiled);
         }
 
         return convertView;
@@ -116,6 +120,14 @@ public class RecHotAdapter extends BaseAdapter {
         TextView nickname;
         @BindView(R.id.createTime)
         TextView createTime;
+        @BindView(R.id.shiled)
+        ImageView shiled;
+        @BindView(R.id.copylink)
+        ImageView copylink;
+        @BindView(R.id.report)
+        ImageView report;
+        @BindView(R.id.icon_open)
+        ImageView iconOpen;
         @BindView(R.id.workDesc)
         TextView workDesc;
         @BindView(R.id.cover)
