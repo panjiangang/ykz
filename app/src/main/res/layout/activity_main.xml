@@ -6,12 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="xin.com.funtrek.activitys.MainActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,50 +20,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
-                android:visibility="gone"
                 app:contentInsetStart="0dp"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-            <include layout="@layout/toolbar_layout" />
+                android:visibility="gone"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+            <include layout="@layout/toolbar_layout"/>
 
 
         </android.support.design.widget.AppBarLayout>
 
-        <com.hjm.bottomtabbar.BottomTabBar
-            android:id="@+id/navigatbar"
+        <FrameLayout
+            android:id="@+id/frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:tab_font_size="12dp"
-            app:tab_img_font_padding="0dp"
-            app:tab_img_height="38dp"
-            app:tab_img_width="38dp"
-            app:tab_isshow_divider="true"
-            app:tab_padding_top="8dp"
-            app:tab_selected_color="#1396db"
-            app:tab_unselected_color="#bfbfbf" />
+            android:layout_weight="1"></FrameLayout>
+
+        <com.ashokvarma.bottomnavigation.BottomNavigationBar
+            android:id="@+id/bottom_navigation_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+        </com.ashokvarma.bottomnavigation.BottomNavigationBar>
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        >
         <android.support.design.widget.NavigationView
+            android:layout_weight="7"
             android:id="@+id/nav_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="7"
             app:headerLayout="@layout/nav_header"
-            app:menu="@menu/nav_menu" />
-
+            app:menu="@menu/nav_menu">
+        </android.support.design.widget.NavigationView>
         <android.support.design.widget.NavigationView
             android:id="@+id/nav_view2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
             android:layout_weight="2"
-            app:headerLayout="@layout/nav_header2" />
+            app:headerLayout="@layout/nav_header2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+        </android.support.design.widget.NavigationView>
 
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

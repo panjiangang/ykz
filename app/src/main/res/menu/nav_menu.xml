@@ -3,19 +3,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/attention"
-            android:icon="@mipmap/ic_launcher_round"
+            android:icon="@drawable/gz"
             android:title="我的关注"></item>
         <item
             android:id="@+id/collect"
-            android:icon="@mipmap/ic_launcher_round"
+            android:icon="@drawable/sc"
             android:title="我的收藏"></item>
         <item
             android:id="@+id/friends"
-            android:icon="@mipmap/ic_launcher_round"
+            android:icon="@drawable/siu"
             android:title="搜索好友"></item>
         <item
             android:id="@+id/message"
-            android:icon="@mipmap/ic_launcher_round"
+            android:icon="@drawable/tz"
             android:title="消息通知"></item>
     </group>
     <group>
