@@ -60,7 +60,6 @@ public class Login_view extends AppCompatActivity {
     @OnClick(R.id.login_return)
     public void onLoginReturnClicked() {
         finish();
-        overridePendingTransition(R.anim.slide_in_other, R.anim.slide_in_close);
     }
 
     @OnClick(R.id.login_other)
