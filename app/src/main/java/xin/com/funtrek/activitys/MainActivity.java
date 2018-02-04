@@ -3,7 +3,11 @@ package xin.com.funtrek.activitys;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,6 +15,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -26,6 +31,11 @@ import android.widget.Toast;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -38,6 +48,7 @@ import xin.com.funtrek.framgments.Picture;
 import xin.com.funtrek.framgments.Recommend;
 import xin.com.funtrek.framgments.Session;
 import xin.com.funtrek.framgments.Video;
+import xin.com.funtrek.http.bean.UpPic;
 import xin.com.funtrek.mvp.DaggerIComponent;
 import xin.com.funtrek.mvp.IModule;
 import xin.com.funtrek.mvp.login.Login_view;
@@ -65,11 +76,13 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     NavigationView mNavView2;
     @BindView(R.id.main_drawlayout)
     DrawerLayout mMainDrawlayout;
+
     private Recommend mRecommend;
     private Session mSession;
     private Video mVideo;
     private FragmentManager manager;
     private Fragment fm;
+    private String path = Environment.getExternalStorageDirectory().getPath() + "/head.jpg";
     SharedPreferences sp;
     private FragmentTransaction mTransaction1;
     private Recommend mRecommend1;
@@ -79,6 +92,9 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     private String mUsername;
     private String mToken;
     private String mUid;
+    private TextView mCamera;
+    private TextView mPicture;
+    private AlertDialog mAlertDialog;
 
     @Override
     protected int setLayout() {
@@ -102,6 +118,31 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
         }
         changeFragment(mRecommend);
         navBar();
+        View mDialog = View.inflate(this, R.layout.dialogview, null);
+        mCamera = mDialog.findViewById(R.id.camera);
+        mPicture = mDialog.findViewById(R.id.picture);
+        mAlertDialog = new AlertDialog
+                .Builder(this)
+                .setView(mDialog)
+                .create();
+        mCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent takeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                it.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(path)));
+                startActivityForResult(it, 2000);
+            }
+        });
+        mPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, 4000);
+            }
+        });
     }
 
     @OnClick({R.id.user_image1, R.id.publish})
@@ -207,12 +248,13 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                 .findViewById(R.id.user_name);
         name.setText(mUsername);
         //用户头像
+
         mUser_img = navView.getHeaderView(0)
                 .findViewById(R.id.user_image);
         mUser_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Login_view.class));
+                mAlertDialog.show();
             }
         });
         //侧拉列表菜单
@@ -294,5 +336,79 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     protected void onPause() {
         super.onPause();
         JZVideoPlayerStandard.releaseAllVideos();
+    }
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // 2.拍照完以后进行裁剪
+        // RESULT_OK:-->是常亮,代表返回操作成功;
+        if (requestCode == 2000 && resultCode == RESULT_OK) {
+            // 2.调取系统的裁剪
+            Intent it = new Intent("com.android.camera.action.CROP");
+            // 拿到图片 type 图片的类型
+            it.setDataAndType(Uri.fromFile(new File(path)), "image/*");
+            // 是否支持裁剪
+            it.putExtra("crop", true);
+            // 设置宽高比
+            it.putExtra("aspectX", 1);
+            it.putExtra("aspectY", 1);
+            // 设置图片输出的大小
+            it.putExtra("outputX", 250);
+            it.putExtra("outputY", 250);
+            // 是否支持人脸识别
+            it.putExtra("onFaceDetection", false);
+            it.putExtra("return-data", true);
+            // 剪裁完之后,发送startActivityForResult;
+            startActivityForResult(it, 3000);
+
+        }
+
+        // 2.设置图片
+
+        if (requestCode == 3000 && resultCode == RESULT_OK) {
+            Bitmap bitmap = data.getParcelableExtra("data");
+            try {
+                //Bitmap对象保存味图片文件
+                File file = new File(path);//将要保存图片的路径
+                BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+                bos.flush();
+                bos.close();
+                Log.e("ssss",file.toString() );
+                mMain_presenter.getData(mToken,mUid,file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        // 3.调取完系统的相册后 进行裁剪
+        if (requestCode == 4000 && resultCode == RESULT_OK) {
+            // 得到相册的图片的路径,直接用这个getData;
+            Uri uri = data.getData();
+            // 3.调取系统的裁剪
+            Intent it = new Intent("com.android.camera.action.CROP");
+            // 拿到图片 type 图片的类型
+            it.setDataAndType(uri, "image/*");
+            // 是否支持裁剪
+            it.putExtra("crop", true);
+            // 设置宽高比
+            it.putExtra("aspectX", 1);
+            it.putExtra("aspectY", 1);
+            // 设置图片输出的大小
+            it.putExtra("outputX", 250);
+            it.putExtra("outputY", 250);
+            // 是否支持人脸识别
+            it.putExtra("onFaceDetection", false);
+            it.putExtra("return-data", true);
+            startActivityForResult(it, 3000);
+        }
+    }
+
+    @Override
+    public void showData(UpPic bean) {
+        Log.e("", bean.getMsg() );
+        Toast.makeText(this, bean.getMsg(), Toast.LENGTH_SHORT).show();
     }
 }

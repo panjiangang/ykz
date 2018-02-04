@@ -9,11 +9,11 @@
 
         <ImageView
             android:id="@+id/user_image1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="5dp"
-            android:src="@mipmap/ic_launcher_round" />
+            android:src="@drawable/mnmn" />
 
         <TextView
             android:id="@+id/title"
