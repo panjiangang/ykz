@@ -124,6 +124,7 @@ public class VideoActivity extends AppCompatActivity {
             public int getCount() {
                 return hotlist.get(hotposition).getComments().size();
             }
+
             @Override
             public Object getItem(int position) {
                 return hotlist.get(hotposition).getComments().get(position);
@@ -140,7 +141,7 @@ public class VideoActivity extends AppCompatActivity {
                 View inflate = convertView.inflate(VideoActivity.this, R.layout.activity_video_listadapter, null);
                 TextView textname = inflate.findViewById(R.id.textname);
                 TextView textcontent = inflate.findViewById(R.id.textcontent);
-                textname.setText(hotlist.get(hotposition).getComments().get(position).getNickname()+":");
+                textname.setText(hotlist.get(hotposition).getComments().get(position).getNickname() + ":");
                 textcontent.setText(hotlist.get(hotposition).getComments().get(position).getContent());
                 return inflate;
             }
