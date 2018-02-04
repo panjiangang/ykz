@@ -17,9 +17,7 @@ import android.widget.TextView;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import xin.com.funtrek.mvp.DaggerIComponent;
 import javax.inject.Inject;
-
 import xin.com.funtrek.R;
 import xin.com.funtrek.base.BaseFragment;
 import xin.com.funtrek.framgments.videofragments.HotFragment;

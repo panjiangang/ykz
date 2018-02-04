@@ -9,6 +9,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import xin.com.funtrek.http.bean.HotBean;
+import xin.com.funtrek.http.bean.HotLikeBean;
 import xin.com.funtrek.http.bean.RecBannerBean;
 import xin.com.funtrek.http.bean.RecItemBean;
 import xin.com.funtrek.http.bean.SessionBean;
@@ -20,6 +21,13 @@ import xin.com.funtrek.http.bean.SessionBean;
 
 
 public interface ApiServce {
+
+    @GET("/quarter/getHotVideos")
+    Observable<HotBean> hot(@Query("page") String i, @Query("token") String i1);
+
+    @GET("/quarter/praise")
+    Observable<HotLikeBean> hotlike(@Query("uid") String i, @Query("wid") String i1, @Query("token") String i2);
+
     @GET("/quarter/getVideos")
     Observable<HotBean> hot(@Query("uid") String i, @Query("type") String i1, @Query("page") String i3);
     @GET("quarter/getAd")

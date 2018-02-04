@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-import android.widget.Toast;
 
 import com.liaoinstan.springview.container.DefaultFooter;
 import com.liaoinstan.springview.container.DefaultHeader;
@@ -38,13 +37,11 @@ public class HotFragment extends BaseFragment<Video_view, Video_presenter> imple
     private HotAdapter hotAdapter;
     List<HotBean.DataBean> list = new ArrayList<>();
     int i=1;
-
     @Override
     protected int setLayout() {
         return R.layout.video_hotfragment;
 
     }
-
 
     @Override
     protected void bridge() {
@@ -71,12 +68,12 @@ public class HotFragment extends BaseFragment<Video_view, Video_presenter> imple
                     list.clear();
                 }
                 i=1;
-                presenter.gethttp(108,1,i);
+                presenter.gethttp(i,108);
             }
             @Override
             public void onLoadmore() {
                 i++;
-                presenter.gethttp(108,1,i);
+                presenter.gethttp(i,108);
             }
         });
     }
@@ -94,11 +91,12 @@ public class HotFragment extends BaseFragment<Video_view, Video_presenter> imple
                 startActivity(intent);
             }
         });
-        presenter.gethttp(108,1,i);
+        presenter.gethttp(1,108);
 
     }
     @Override
     public void HotSuccess(HotBean hotBean) {
+        System.out.println("hotBean.getMsg() = " + hotBean.getMsg());
         list.addAll(hotBean.getData());
         hotAdapter.add(list);
         hotAdapter.notifyDataSetChanged();

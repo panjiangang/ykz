@@ -47,10 +47,13 @@ public class RetrofitUtils {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new HttpInterceptor())
+                .readTimeout(2000, TimeUnit.SECONDS)
+                .writeTimeout(2000,TimeUnit.SECONDS)
+                .connectTimeout(2000,TimeUnit.SECONDS)
                 .addInterceptor(httpLoggingInterceptor)
-                .readTimeout(5000, TimeUnit.SECONDS)
-                .writeTimeout(5000, TimeUnit.SECONDS)
-                .connectTimeout(5000, TimeUnit.SECONDS)
+                .readTimeout(2000, TimeUnit.SECONDS)
+                .writeTimeout(2000, TimeUnit.SECONDS)
+                .connectTimeout(2000, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(false)
                 .build();
         if (retrofit == null) {
@@ -64,7 +67,6 @@ public class RetrofitUtils {
         }
         return retrofit;
     }
-
     public <T> T getApiService(String url, Class<T> cl) {
         Retrofit retrofit = getRetrofit(url);
         return retrofit.create(cl);
