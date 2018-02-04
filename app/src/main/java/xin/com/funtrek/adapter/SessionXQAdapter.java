@@ -11,7 +11,8 @@ import com.bumptech.glide.Glide;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 import xin.com.funtrek.R;
-import xin.com.funtrek.activitys.SessionXQActivity;
+//import xin.com.funtrek.activitys.SessionXQActivity;
+import xin.com.funtrek.activitys.DetailsActivity;
 import xin.com.funtrek.http.bean.SessionXQBean;
 
 /**
@@ -26,7 +27,7 @@ public class SessionXQAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private SessionXQBean sessionXQBean;
     private String imgUrls;
 
-    public SessionXQAdapter(SessionXQActivity sessionXQActivity, SessionXQBean sessionXQBean, String imgUrls) {
+    public SessionXQAdapter(DetailsActivity sessionXQActivity, SessionXQBean sessionXQBean, String imgUrls) {
         this.context = sessionXQActivity;
         this.sessionXQBean = sessionXQBean;
         this.imgUrls = imgUrls;

@@ -59,7 +59,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/report1" />
+        android:src="@drawable/report1" />
 
         <ImageView
             android:id="@+id/icon_open"
