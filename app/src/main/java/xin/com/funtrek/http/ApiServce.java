@@ -43,6 +43,7 @@ public interface ApiServce {
     Observable<RecItemBean> getVideos(@Query("type") int type, @Query("page") int page);
     @GET("quarter/getJokes")
     Flowable<SessionBean> sessionUrl(@QueryMap Map<String, String> map);
+    //更改用户图片
     @Multipart
     @POST("file/upload")
     Flowable <UpPic> upPicture(@QueryMap Map<String, String> map,

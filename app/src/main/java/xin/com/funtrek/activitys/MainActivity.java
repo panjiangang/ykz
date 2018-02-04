@@ -32,10 +32,7 @@ import android.widget.Toast;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import javax.inject.Inject;
 
@@ -270,12 +267,12 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                         Toast.makeText(MainActivity.this, "关注", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.collect:
-                        startActivity(new Intent(MainActivity.this, CollectActivity.class));
+                        startActivity(new Intent(MainActivity.this, FriendsActivity.class));
 
                         Toast.makeText(MainActivity.this, "收藏", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.friends:
-                        startActivity(new Intent(MainActivity.this, FriendsActivity.class));
+                        startActivity(new Intent(MainActivity.this, CollectActivity.class));
 
                         Toast.makeText(MainActivity.this, "好友", Toast.LENGTH_SHORT).show();
                         break;
