@@ -2,9 +2,13 @@ package xin.com.funtrek.activitys;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.liaoinstan.springview.container.DefaultFooter;
@@ -15,6 +19,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import xin.com.funtrek.R;
 import xin.com.funtrek.adapter.RecHotAdapter;
@@ -36,6 +41,10 @@ public class FriendsActivity extends AppCompatActivity implements RecHotIView, S
     @BindView(R.id.sv)
     SpringView sv;
     Unbinder unbinder;
+    @BindView(R.id.setting_back)
+    LinearLayout mSettingBack;
+    @BindView(R.id.title)
+    TextView mTitle;
     private RecHotAdapter recHotAdapter;
     private String uid;
     private String token;
@@ -43,7 +52,7 @@ public class FriendsActivity extends AppCompatActivity implements RecHotIView, S
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_rec_hot);
+        setContentView(R.layout.activity_friends);
 
         DaggerIComponent.builder().iModule(new IModule()).build().inject(this);
         if (reHotFramgentPresenter != null) {
@@ -51,6 +60,7 @@ public class FriendsActivity extends AppCompatActivity implements RecHotIView, S
         }
 
         unbinder = ButterKnife.bind(this);
+        mTitle.setText("我的收藏");
         init();
         setListener();
     }
@@ -109,5 +119,10 @@ public class FriendsActivity extends AppCompatActivity implements RecHotIView, S
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    @OnClick(R.id.setting_back)
+    public void onViewClicked() {
+        finish();
     }
 }
