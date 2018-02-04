@@ -46,7 +46,7 @@ public class RecHotAdapter extends BaseAdapter {
     Handler handler = new Handler(Looper.getMainLooper());
     private final RecHotPresenter reHotFramgentPresenter1;
     private final int uid1;
-    private final String token1;
+    private String token1;
 
     public RecHotAdapter(RecHotPresenter reHotFramgentPresenter, int uid, Object token) {
         reHotFramgentPresenter1 = reHotFramgentPresenter;
@@ -90,6 +90,8 @@ public class RecHotAdapter extends BaseAdapter {
                 userHolder = new UserHolder(convertView);
                 convertView.setTag(userHolder);
             } else userHolder = (UserHolder) convertView.getTag();
+
+            token1 = user.getToken();
 
             userHolder.detailsUpSdv.setImageURI((String) user.getIcon());
             userHolder.detailsUpFans.setText(new Double((Double) user.getFans()).intValue() + " 粉丝  |    " + new Double((Double) user.getFollow()).intValue() + "关注");
