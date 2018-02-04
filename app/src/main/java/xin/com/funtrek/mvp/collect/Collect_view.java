@@ -1,4 +1,4 @@
-package xin.com.funtrek.mvp.main;
+package xin.com.funtrek.mvp.collect;
 
 import xin.com.funtrek.http.bean.UpPic;
 
@@ -8,7 +8,7 @@ import xin.com.funtrek.http.bean.UpPic;
  */
 
 
-public interface Main_view {
+public interface Collect_view {
     void showData(UpPic bean);
 
 }

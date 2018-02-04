@@ -46,6 +46,7 @@ public class ReleaseSuccessActivity extends AppCompatActivity {
 
     @OnClick(R.id.release_look_look)
     public void onReleaseLookLookClicked() {
-        startActivity(new Intent(ReleaseSuccessActivity.this, VideoActivity.class));
+        startActivity(new Intent(ReleaseSuccessActivity.this, MainActivity.class));
+        finish();
     }
 }

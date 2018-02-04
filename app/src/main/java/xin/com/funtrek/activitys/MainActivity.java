@@ -1,9 +1,14 @@
 package xin.com.funtrek.activitys;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,7 +16,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -25,23 +33,30 @@ import android.widget.Toast;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.jzvd.JZVideoPlayerStandard;
 import xin.com.funtrek.R;
 import xin.com.funtrek.base.BaseActivity;
-import xin.com.funtrek.framgments.Picture;
 import xin.com.funtrek.framgments.Recommend;
 import xin.com.funtrek.framgments.Session;
 import xin.com.funtrek.framgments.Video;
+import xin.com.funtrek.http.bean.UpPic;
 import xin.com.funtrek.mvp.DaggerIComponent;
 import xin.com.funtrek.mvp.IModule;
-import xin.com.funtrek.mvp.login.Login_view;
 import xin.com.funtrek.mvp.main.Main_presenter;
 import xin.com.funtrek.mvp.main.Main_view;
+import xin.com.funtrek.utils.ImageUtils;
+import xin.com.funtrek.utils.MessageEvent;
 
 public class MainActivity extends BaseActivity<Main_view, Main_presenter> implements Main_view {
     @Inject
@@ -64,11 +79,13 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     NavigationView mNavView2;
     @BindView(R.id.main_drawlayout)
     DrawerLayout mMainDrawlayout;
+
     private Recommend mRecommend;
     private Session mSession;
     private Video mVideo;
     private FragmentManager manager;
     private Fragment fm;
+    private String path = Environment.getExternalStorageDirectory().getPath() + "/head.jpg";
     SharedPreferences sp;
     private FragmentTransaction mTransaction1;
     private Recommend mRecommend1;
@@ -78,6 +95,14 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     private String mUsername;
     private String mToken;
     private String mUid;
+    private TextView mCamera;
+    private TextView mPicture;
+    private AlertDialog mAlertDialog;
+    protected static final int CHOOSE_PICTURE = 0;
+    protected static final int TAKE_PICTURE = 1;
+    private static final int CROP_SMALL_PICTURE = 2;
+    protected static Uri tempUri;
+    private boolean isExit = false;//返回键
 
     @Override
     protected int setLayout() {
@@ -96,12 +121,41 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
 
     @Override
     protected void initView() {
+
+        EventBus.getDefault().register(this);
+
         if (mRecommend == null) {
             mRecommend = new Recommend();
         }
         changeFragment(mRecommend);
         navBar();
+        View mDialog = View.inflate(this, R.layout.dialogview, null);
+        mCamera = mDialog.findViewById(R.id.camera);
+        mPicture = mDialog.findViewById(R.id.picture);
+        mAlertDialog = new AlertDialog
+                .Builder(this)
+                .setView(mDialog)
+                .create();
+        mCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent takeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                it.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(path)));
+                startActivityForResult(it, 2000);
+            }
+        });
+        mPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, 4000);
+            }
+        });
     }
+
     @OnClick({R.id.user_image1, R.id.publish})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -110,7 +164,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                 break;
             case R.id.publish:
                 Intent intent = new Intent(this, CreateActivity.class);
-                 startActivity(intent);
+                startActivity(intent);
                 break;
         }
     }
@@ -172,24 +226,32 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                         break;
                 }
             }
+
             @Override
             public void onTabUnselected(int position) {
             }
+
             @Override
             public void onTabReselected(int position) {
             }
         });
     }
+
     @SuppressLint("WrongConstant")
     @Override
     protected void logic() {
         sp = getSharedPreferences("SharedPreferences", MODE_APPEND);
-        mUid = sp.getString("uid", "1730");
-        mToken = sp.getString("token", "75B3A34ABE0ABC6A6BD05725E244365B");
+        mUid = sp.getString("uid", "");
+        // 12272
+        Log.e("XXXXXXXXXXXX", mUid);
+        mToken = sp.getString("token", "");
+        //C625F5867FC5F65790AAD571784C748F
+        Log.e("XXXXXXXXXXXX", mToken);
         mUsername = sp.getString("username", "");
         mySide();
     }
-//侧拉页面
+
+    //侧拉页面
     public void mySide() {
         navView.setItemIconTintList(null);
         //获取用户名
@@ -197,12 +259,13 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                 .findViewById(R.id.user_name);
         name.setText(mUsername);
         //用户头像
+
         mUser_img = navView.getHeaderView(0)
                 .findViewById(R.id.user_image);
         mUser_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Login_view.class));
+                showChoosePicDialog();
             }
         });
         //侧拉列表菜单
@@ -215,12 +278,12 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
                         Toast.makeText(MainActivity.this, "关注", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.collect:
-                        startActivity(new Intent(MainActivity.this, CollectActivity.class));
+                        startActivity(new Intent(MainActivity.this, FriendsActivity.class));
 
                         Toast.makeText(MainActivity.this, "收藏", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.friends:
-                        startActivity(new Intent(MainActivity.this, FriendsActivity.class));
+                        startActivity(new Intent(MainActivity.this, CollectActivity.class));
 
                         Toast.makeText(MainActivity.this, "好友", Toast.LENGTH_SHORT).show();
                         break;
@@ -249,7 +312,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
         mWorks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,productionActivity.class));
+                startActivity(new Intent(MainActivity.this, productionActivity.class));
                 Toast.makeText(MainActivity.this, "本地", Toast.LENGTH_SHORT).show();
             }
         });
@@ -258,7 +321,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
         mSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,SettingActivity.class));
+                startActivity(new Intent(MainActivity.this, SettingActivity.class));
                 Toast.makeText(MainActivity.this, "设置", Toast.LENGTH_SHORT).show();
             }
         });
@@ -285,4 +348,164 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
         super.onPause();
         JZVideoPlayerStandard.releaseAllVideos();
     }
+
+    @Override
+    public void showData(UpPic bean) {
+        Log.e("", bean.getMsg());
+        Toast.makeText(this, bean.getMsg(), Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 显示修改头像的对话框
+     */
+    protected void showChoosePicDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("上传头像");
+        String[] items = {"选择本地图片", "拍照"};
+        builder.setNegativeButton("取消", null);
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case CHOOSE_PICTURE: // 选择本地照片
+                        Intent openAlbumIntent = new Intent(
+                                Intent.ACTION_GET_CONTENT);
+                        openAlbumIntent.setType("image/*");
+                        startActivityForResult(openAlbumIntent, CHOOSE_PICTURE);
+                        break;
+                    case TAKE_PICTURE: // 拍照
+                        Intent openCameraIntent = new Intent(
+                                MediaStore.ACTION_IMAGE_CAPTURE);
+                        tempUri = Uri.fromFile(new File(Environment
+                                .getExternalStorageDirectory(), "image.jpg"));
+                        // 指定照片保存路径（SD卡），image.jpg为一个临时文件，每次拍照后这个图片都会被替换
+                        openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, tempUri);
+                        startActivityForResult(openCameraIntent, TAKE_PICTURE);
+                        break;
+                }
+            }
+        });
+        builder.create().show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) { // 如果返回码是可以用的
+            switch (requestCode) {
+                case TAKE_PICTURE:
+                    startPhotoZoom(tempUri); // 开始对图片进行裁剪处理
+                    break;
+                case CHOOSE_PICTURE:
+                    startPhotoZoom(data.getData()); // 开始对图片进行裁剪处理
+                    break;
+                case CROP_SMALL_PICTURE:
+                    if (data != null) {
+                        setImageToView(data); // 让刚才选择裁剪得到的图片显示在界面上
+                    }
+                    break;
+            }
+        }
+    }
+
+    /**
+     * 裁剪图片方法实现
+     *
+     * @param uri
+     */
+    protected void startPhotoZoom(Uri uri) {
+        if (uri == null) {
+            Log.i("tag", "The uri is not exist.");
+        }
+        tempUri = uri;
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        // 设置裁剪
+        intent.putExtra("crop", "true");
+        // aspectX aspectY 是宽高的比例
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        // outputX outputY 是裁剪图片宽高
+        intent.putExtra("outputX", 150);
+        intent.putExtra("outputY", 150);
+        intent.putExtra("return-data", true);
+        startActivityForResult(intent, CROP_SMALL_PICTURE);
+    }
+
+    /**
+     * 保存裁剪之后的图片数据
+     *
+     * @param
+     * @param
+     */
+    protected void setImageToView(Intent data) {
+        Bundle extras = data.getExtras();
+        if (extras != null) {
+            Bitmap photo = extras.getParcelable("data");
+            photo = ImageUtils.toRoundBitmap(photo, tempUri); // 这个时候的图片已经被处理成圆形的了
+            mUser_img.setImageBitmap(photo);
+            uploadPic(photo);
+        }
+    }
+
+    private void uploadPic(Bitmap bitmap) {
+        // 上传至服务器
+        // ... 可以在这里把Bitmap转换成file，然后得到file的url，做文件上传操作
+        // 注意这里得到的图片已经是圆形图片了
+        // bitmap是没有做个圆形处理的，但已经被裁剪了
+
+        String imagePath = ImageUtils.savePhoto(bitmap, Environment
+                .getExternalStorageDirectory().getAbsolutePath(), String
+                .valueOf(System.currentTimeMillis()));
+
+        if (imagePath != null) {
+            // 拿着imagePath上传了
+//            Toast.makeText(SatinActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //按两次返回键退出
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            //音乐服务启动了，隐藏至通知栏
+            if (isExit) {
+                exit("再按一次隐藏至通知栏");
+            } else {
+                exit("再按一次退出程序");
+                mMainDrawlayout.closeDrawer(GravityCompat.START);
+            }
+        }
+        return false;
+    }
+
+    private void exit(String info) {
+        if (!isExit) {
+            isExit = true;
+            Toast.makeText(MainActivity.this, info, Toast.LENGTH_SHORT).show();
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isExit = false;
+                }
+            }, 2000);
+        } else {
+            finish();
+        }
+    }
+
+    @Subscribe
+    public void onMessageEvent(MessageEvent event) {
+        if (event.isTag().equals("退出登录")) {
+            finish();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
 }

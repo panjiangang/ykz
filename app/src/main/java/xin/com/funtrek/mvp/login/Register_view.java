@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -22,6 +24,7 @@ import xin.com.funtrek.R;
 import xin.com.funtrek.activitys.MainActivity;
 import xin.com.funtrek.http.bean.Login_Success_Bean;
 import xin.com.funtrek.mvp.login.Login_presenter;
+import xin.com.funtrek.utils.MessageEvent;
 import xin.com.funtrek.utils.Retrofit_Interface;
 
 public class Register_view extends AppCompatActivity implements Login_presenter.MainPresenter {
@@ -88,6 +91,7 @@ public class Register_view extends AppCompatActivity implements Login_presenter.
                     edit.putBoolean("login", true);
                     edit.commit();
                     startActivity(new Intent(Register_view.this, MainActivity.class));
+                    finish();
                 }
 
                 @Override
@@ -118,5 +122,6 @@ public class Register_view extends AppCompatActivity implements Login_presenter.
         edit.putBoolean("login", true);
         edit.commit();
         startActivity(new Intent(Register_view.this, MainActivity.class));
+        finish();
     }
 }

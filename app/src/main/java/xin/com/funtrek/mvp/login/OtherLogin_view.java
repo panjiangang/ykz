@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import xin.com.funtrek.R;
 import xin.com.funtrek.activitys.MainActivity;
 import xin.com.funtrek.http.bean.Login_Success_Bean;
+import xin.com.funtrek.utils.MessageEvent;
 import xin.com.funtrek.utils.Retrofit_Interface;
 
 public class OtherLogin_view extends AppCompatActivity implements Login_presenter.MainPresenter {
@@ -80,6 +83,7 @@ public class OtherLogin_view extends AppCompatActivity implements Login_presente
         edit.putBoolean("login", true);
         edit.commit();
         startActivity(new Intent(OtherLogin_view.this, MainActivity.class));
+        finish();
     }
 
     @Override
@@ -106,6 +110,7 @@ public class OtherLogin_view extends AppCompatActivity implements Login_presente
                     edit.putBoolean("login", true);
                     edit.commit();
                     startActivity(new Intent(OtherLogin_view.this, MainActivity.class));
+                    finish();
                 }
 
                 @Override

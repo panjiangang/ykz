@@ -65,4 +65,5 @@ dependencies {
     compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.3'
 
     compile 'fm.jiecao:jiecaovideoplayer:5.5'
+    compile 'org.greenrobot:eventbus:3.1.1'
 }

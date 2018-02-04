@@ -13,11 +13,8 @@ import okhttp3.Response;
 class HttpInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
-
         Request request = chain.request();
-
         String s = request.url().toString();
-
         Request request1 = request.newBuilder().url(s + (s.contains("?") ? "&" : "?")
                 + "source=android&appVersion=101").build();
 

@@ -23,12 +23,13 @@
             android:src="@drawable/video_fanhui" />
 
         <RadioGroup
+            android:id="@+id/radio"
             android:layout_width="0dp"
             android:layout_weight="2"
             android:orientation="horizontal"
             android:layout_height="match_parent">
-
             <RadioButton
+                android:id="@+id/button1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -36,6 +37,7 @@
                 android:drawableTop="@drawable/video_select_like"
                 android:padding="10dp" />
             <RadioButton
+                android:id="@+id/button2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -71,10 +73,58 @@
         android:id="@+id/videoplayer"
         android:layout_width="match_parent"
         android:layout_height="300dp"/>
-    <TextView
-        android:text="评论区"
-        android:gravity="center"
-        android:textSize="50dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:paddingLeft="5dp"
+                android:textColor="#000000"
+                android:gravity="center_vertical"
+                android:textSize="20dp"
+                android:text="1111111111111111111111"
+                />
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingTop="2dp"
+                android:paddingLeft="5dp"
+                android:gravity="center_vertical"
+                android:textSize="18dp"
+                android:text="22222222222222222222"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="评论"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:textColor="#f00"
+                />
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></ListView>
+        </LinearLayout>
+        
+    </LinearLayout>
 </LinearLayout>

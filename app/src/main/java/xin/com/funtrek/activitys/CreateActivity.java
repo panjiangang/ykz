@@ -1,6 +1,8 @@
 package xin.com.funtrek.activitys;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
@@ -19,13 +21,18 @@ public class CreateActivity extends AppCompatActivity {
     LinearLayout createMovie;
     @BindView(R.id.create_satin)
     LinearLayout createSatin;
+    SharedPreferences sp;
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mcreate);
         ButterKnife.bind(this);
-
+        sp = getSharedPreferences("SharedPreferences", MODE_APPEND);
+        String uid = sp.getString("uid", "1730");
+        String token = sp.getString("token", "75B3A34ABE0ABC6A6BD05725E244365B");
+        System.out.println("uid======"+uid+"**********token========="+token);
     }
 
     @OnClick(R.id.create_cancel)

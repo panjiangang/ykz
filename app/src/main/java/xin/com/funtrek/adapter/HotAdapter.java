@@ -1,6 +1,5 @@
 package xin.com.funtrek.adapter;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,16 +7,14 @@ import android.view.ViewGroup;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import xin.com.funtrek.R;
-import xin.com.funtrek.activitys.VideoActivity;
-import xin.com.funtrek.http.bean.HotBean;
 import xin.com.funtrek.framgments.videofragments.HotFragment;
 import xin.com.funtrek.framgments.videofragments.VearbyFragment;
+import xin.com.funtrek.http.bean.HotBean;
 
 /**
  * Created by D-H-F on 2018/01/26.

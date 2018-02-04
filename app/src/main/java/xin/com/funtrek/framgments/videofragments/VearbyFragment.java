@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
-
 import com.liaoinstan.springview.container.DefaultFooter;
 import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +17,6 @@ import xin.com.funtrek.R;
 import xin.com.funtrek.activitys.VideoActivity;
 import xin.com.funtrek.adapter.HotAdapter;
 import xin.com.funtrek.base.BaseFragment;
-import xin.com.funtrek.base.BasePresenter;
 import xin.com.funtrek.http.bean.HotBean;
 import xin.com.funtrek.mvp.DaggerIComponent;
 import xin.com.funtrek.mvp.IModule;
@@ -67,12 +64,12 @@ public class VearbyFragment extends BaseFragment<Video_view, Video_presenter> im
                     list.clear();
                 }
                 i=1;
-                presenter.gethttp(108,1,i);
+                presenter.gethttp(i,108);
             }
             @Override
             public void onLoadmore() {
                 i++;
-                presenter.gethttp(108,1,i);
+                presenter.gethttp(i,108);
             }
         });
     }
@@ -90,7 +87,7 @@ public class VearbyFragment extends BaseFragment<Video_view, Video_presenter> im
                 startActivity(intent);
             }
         });
-        presenter.gethttp(108,1,i);
+        presenter.gethttp(i,108);
     }
     @Override
     public void HotSuccess(HotBean hotBean) {

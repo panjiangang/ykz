@@ -16,6 +16,8 @@ import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,6 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xin.com.funtrek.R;
 import xin.com.funtrek.activitys.MainActivity;
+import xin.com.funtrek.utils.MessageEvent;
 
 public class Login_view extends AppCompatActivity {
 
@@ -58,6 +61,7 @@ public class Login_view extends AppCompatActivity {
         boolean login = sp.getBoolean("login", false);
         if (login) {
             startActivity(new Intent(Login_view.this, MainActivity.class));
+            finish();
         }
     }
 
@@ -90,6 +94,7 @@ public class Login_view extends AppCompatActivity {
             public void onComplete(Object o) {
                 //登录成功后调用的方法
                 JSONObject jo = (JSONObject) o;
+                String s = jo.toString();
                 Toast.makeText(Login_view.this, "登录成功", Toast.LENGTH_SHORT).show();
                 Log.e("COMPLETE:", jo.toString());
                 String openID;
@@ -109,6 +114,7 @@ public class Login_view extends AppCompatActivity {
                 edit.putBoolean("login", true);
                 edit.commit();
                 startActivity(new Intent(Login_view.this, MainActivity.class));
+                finish();
             }
 
             @Override
@@ -129,7 +135,6 @@ public class Login_view extends AppCompatActivity {
             public void onComplete(Object o) {
                 System.out.println("---------------------------------");
                 if (o == null) {
-
                     return;
                 }
                 try {
@@ -163,5 +168,18 @@ public class Login_view extends AppCompatActivity {
                 Tencent.handleResultData(data, loginListener);
             }
         }
+    }
+
+    @Subscribe
+    public void onMessageEvent(MessageEvent event) {
+        if (event.equals("登录成功")) {
+            finish();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

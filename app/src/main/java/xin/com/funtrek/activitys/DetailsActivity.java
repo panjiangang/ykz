@@ -28,7 +28,9 @@ import xin.com.funtrek.http.ApiServce;
 import xin.com.funtrek.http.RetrofitUtils;
 import xin.com.funtrek.http.bean.SessionXQBean;
 
-public class SessionXQActivity extends AppCompatActivity {
+
+public class DetailsActivity extends AppCompatActivity {
+
 
     @BindView(R.id.tup)
     ImageView tup;
@@ -58,6 +60,7 @@ public class SessionXQActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_details_up);
         setContentView(R.layout.activity_session_xq);
         ButterKnife.bind(this);
 

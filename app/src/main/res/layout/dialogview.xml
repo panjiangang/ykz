@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/camera"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textSize="20dp"
+        android:text="相机"
+        />
+    <TextView
+        android:layout_below="@+id/camera"
+        android:id="@+id/picture"
+        android:gravity="center"
+
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="相册"
+        />
+
+</RelativeLayout>
