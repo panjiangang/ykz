@@ -9,7 +9,7 @@ public class RecItemBean {
     /**
      * msg : 获取作品列表成功
      * code : 0
-     * data : [{"commentNum":0,"comments":[],"cover":"https://www.zhaoapi.cn/images/quarter/1514704790621column_2.png","createTime":"2017-12-31T15:19:50","favoriteNum":0,"latitude":"0.0","localUri":null,"longitude":"0.0","playNum":0,"praiseNum":0,"uid":10622,"user":{"age":null,"fans":"null","follow":false,"icon":null,"nickname":null,"praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/1514704790621PictureSelector_20171231_151914.mp4","wid":246,"workDesc":"11"},{"commentNum":0,"comments":[],"cover":"https://www.zhaoapi.cn/images/quarter/1514623018680cover.jpg","createTime":"2017-12-30T16:36:58","favoriteNum":0,"latitude":"","localUri":null,"longitude":"","playNum":0,"praiseNum":0,"uid":88,"user":{"age":null,"fans":"null","follow":false,"icon":"https://www.zhaoapi.cn/images/88.jpg","nickname":"解杰\n","praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/1514623018680videowallpaper_1005.mp4","wid":245,"workDesc":"一个个来"},{"commentNum":0,"comments":[],"cover":"https://www.zhaoapi.cn/images/quarter/1514463086752tab_2_pressed.png","createTime":"2017-12-28T20:11:26","favoriteNum":0,"latitude":"0.0","localUri":null,"longitude":"0.0","playNum":4,"praiseNum":1,"uid":150,"user":{"age":null,"fans":"null","follow":false,"icon":"https://www.zhaoapi.cn/images/1513246264287cropped_1513246262263.jpg","nickname":"小狼","praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/1514463086752d74a602735ab4f70996a59c4ab1aad55.mp4","wid":244,"workDesc":"Ffd"},{"commentNum":0,"comments":[],"cover":"https://www.zhaoapi.cn/images/quarter/1514463083590tab_2_pressed.png","createTime":"2017-12-28T20:11:23","favoriteNum":0,"latitude":"0.0","localUri":null,"longitude":"0.0","playNum":0,"praiseNum":1,"uid":150,"user":{"age":null,"fans":"null","follow":false,"icon":"https://www.zhaoapi.cn/images/1513246264287cropped_1513246262263.jpg","nickname":"小狼","praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/1514463083590d74a602735ab4f70996a59c4ab1aad55.mp4","wid":243,"workDesc":"Ffd"},{"commentNum":0,"comments":[],"cover":"https://www.zhaoapi.cn/images/quarter/1514377558791cover.jpg","createTime":"2017-12-27T20:25:58","favoriteNum":0,"latitude":"","localUri":null,"longitude":"","playNum":1,"praiseNum":1,"uid":154,"user":{"age":null,"fans":"null","follow":false,"icon":"https://www.zhaoapi.cn/images/15136653175981513592154181.jpg","nickname":"笑出腹肌的男人","praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/15143775587911514377509492.mp4","wid":242,"workDesc":" "},{"commentNum":1,"comments":[{"cid":235,"content":"666","createTime":"2017-12-27T16:50:20","jid":null,"mvp":null,"nickname":"GUODONG.","praiseNum":0,"uid":86,"wid":241}],"cover":"https://www.zhaoapi.cn/images/quarter/151425878606620171226112617.jpg","createTime":"2017-12-26T11:26:26","favoriteNum":1,"latitude":"100","localUri":null,"longitude":"100","playNum":3,"praiseNum":2,"uid":195,"user":{"age":null,"fans":"null","follow":false,"icon":"https://www.zhaoapi.cn/images/1514258580051mo.jpg","nickname":"nnnnnn","praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/1514258786066video_20171226_112556.mp4","wid":241,"workDesc":""},{"commentNum":0,"comments":[],"cover":"https://www.zhaoapi.cn/images/quarter/1514164693145cover.jpg","createTime":"2017-12-25T09:18:13","favoriteNum":1,"latitude":"","localUri":null,"longitude":"","playNum":5,"praiseNum":2,"uid":154,"user":{"age":null,"fans":"null","follow":false,"icon":"https://www.zhaoapi.cn/images/15136653175981513592154181.jpg","nickname":"笑出腹肌的男人","praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/15141646931451514164613657.mp4","wid":240,"workDesc":"  "},{"commentNum":0,"comments":[],"cover":"https://www.zhaoapi.cn/images/quarter/1514163477051cover.jpg","createTime":"2017-12-25T08:57:57","favoriteNum":0,"latitude":"","localUri":null,"longitude":"","playNum":0,"praiseNum":0,"uid":154,"user":{"age":null,"fans":"null","follow":false,"icon":"https://www.zhaoapi.cn/images/15136653175981513592154181.jpg","nickname":"笑出腹肌的男人","praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/15141634770511513246461819.mp4","wid":239,"workDesc":" "},{"commentNum":0,"comments":[],"cover":"https://www.zhaoapi.cn/images/quarter/15139329237751511410355963.jpeg","createTime":"2017-12-22T16:55:23","favoriteNum":1,"latitude":"0.0","localUri":null,"longitude":"0.0","playNum":0,"praiseNum":0,"uid":144,"user":{"age":null,"fans":"null","follow":false,"icon":"https://www.zhaoapi.cn/images/1514354957764cropped_1514354958473.jpg","nickname":"乔君","praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/1513932923775PictureSelector_20171222_165501.mp4","wid":238,"workDesc":null},{"commentNum":1,"comments":[{"cid":234,"content":"low","createTime":"2017-12-22T15:01:46","jid":null,"mvp":null,"nickname":"jinlin","praiseNum":0,"uid":92,"wid":237}],"cover":"https://www.zhaoapi.cn/images/quarter/151384437645720171221161914.jpg","createTime":"2017-12-21T16:19:36","favoriteNum":0,"latitude":"null","localUri":null,"longitude":"null","playNum":3,"praiseNum":0,"uid":170,"user":{"age":null,"fans":"null","follow":false,"icon":"https://www.zhaoapi.cn/images/15142684999091.jpg","nickname":"beautiful","praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/1513844376457VID_20171221_161848.3gp","wid":237,"workDesc":"视频"}]
+     * data : [{"commentNum":1,"comments":[{"cid":263,"content":"%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88","createTime":"2018-01-29T18:34:01","jid":null,"mvp":null,"nickname":null,"praiseNum":0,"uid":11365,"wid":273}],"cover":"https://www.zhaoapi.cn/images/quarter/151721482212520180129163224.jpg","createTime":"2018-01-29T16:33:45","favoriteNum":3,"latitude":"0","localUri":null,"longitude":"0","playNum":0,"praiseNum":1,"uid":2924,"user":{"age":null,"fans":"null","follow":false,"icon":null,"nickname":null,"praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/1517214822125VID_20180129_163206.mp4","wid":273,"workDesc":"小短片"},{"commentNum":0,"comments":[],"cover":"https://www.zhaoapi.cn/images/quarter/151721482280220180129163224.jpg","createTime":"2018-01-29T16:33:42","favoriteNum":1,"latitude":"0","localUri":null,"longitude":"0","playNum":0,"praiseNum":0,"uid":2924,"user":{"age":null,"fans":"null","follow":false,"icon":null,"nickname":null,"praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/1517214822802VID_20180129_163206.mp4","wid":272,"workDesc":"小短片"},{"commentNum":0,"comments":[],"cover":"https://www.zhaoapi.cn/images/quarter/151721422725920180129162227.jpg","createTime":"2018-01-29T16:23:47","favoriteNum":1,"latitude":"0","localUri":null,"longitude":"0","playNum":0,"praiseNum":0,"uid":2924,"user":{"age":null,"fans":"null","follow":false,"icon":null,"nickname":null,"praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/1517214227259VID_20180129_162205.mp4","wid":271,"workDesc":"11111"},{"commentNum":0,"comments":[],"cover":"https://www.zhaoapi.cn/images/quarter/151721400670620180129161954.jpg","createTime":"2018-01-29T16:20:07","favoriteNum":0,"latitude":"0","localUri":null,"longitude":"0","playNum":1,"praiseNum":0,"uid":2924,"user":{"age":null,"fans":"null","follow":false,"icon":null,"nickname":null,"praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/1517214006706VID_20180129_161934.mp4","wid":270,"workDesc":"1111"},{"commentNum":0,"comments":[],"cover":"https://www.zhaoapi.cn/images/quarter/151721400672220180129161954.jpg","createTime":"2018-01-29T16:20:07","favoriteNum":0,"latitude":"0","localUri":null,"longitude":"0","playNum":0,"praiseNum":0,"uid":2924,"user":{"age":null,"fans":"null","follow":false,"icon":null,"nickname":null,"praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/1517214006722VID_20180129_161934.mp4","wid":269,"workDesc":"1111"},{"commentNum":0,"comments":[],"cover":"https://www.zhaoapi.cn/images/quarter/1517025486173xniao.jpg","createTime":"2018-01-27T11:58:06","favoriteNum":0,"latitude":"39.95","localUri":null,"longitude":"116.30","playNum":0,"praiseNum":1,"uid":2322,"user":{"age":null,"fans":"null","follow":false,"icon":"https://www.zhaoapi.cn/images/15169660139571516966011147.png","nickname":"小崔","praiseNum":"null"},"videoUrl":"https://www.zhaoapi.cn/images/quarter/1517025486173minion_09.mp4","wid":268,"workDesc":"俞敏洪小视频"}]
      */
 
     private String msg;
@@ -42,21 +42,21 @@ public class RecItemBean {
 
     public static class DataBean {
         /**
-         * commentNum : 0
-         * comments : []
-         * cover : https://www.zhaoapi.cn/images/quarter/1514704790621column_2.png
-         * createTime : 2017-12-31T15:19:50
-         * favoriteNum : 0
-         * latitude : 0.0
+         * commentNum : 1
+         * comments : [{"cid":263,"content":"%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88","createTime":"2018-01-29T18:34:01","jid":null,"mvp":null,"nickname":null,"praiseNum":0,"uid":11365,"wid":273}]
+         * cover : https://www.zhaoapi.cn/images/quarter/151721482212520180129163224.jpg
+         * createTime : 2018-01-29T16:33:45
+         * favoriteNum : 3
+         * latitude : 0
          * localUri : null
-         * longitude : 0.0
+         * longitude : 0
          * playNum : 0
-         * praiseNum : 0
-         * uid : 10622
+         * praiseNum : 1
+         * uid : 2924
          * user : {"age":null,"fans":"null","follow":false,"icon":null,"nickname":null,"praiseNum":"null"}
-         * videoUrl : https://www.zhaoapi.cn/images/quarter/1514704790621PictureSelector_20171231_151914.mp4
-         * wid : 246
-         * workDesc : 11
+         * videoUrl : https://www.zhaoapi.cn/images/quarter/1517214822125VID_20180129_163206.mp4
+         * wid : 273
+         * workDesc : 小短片
          */
 
         private int commentNum;
@@ -73,7 +73,7 @@ public class RecItemBean {
         private String videoUrl;
         private int wid;
         private String workDesc;
-        private List<?> comments;
+        private List<CommentsBean> comments;
 
         public int getCommentNum() {
             return commentNum;
@@ -187,11 +187,11 @@ public class RecItemBean {
             this.workDesc = workDesc;
         }
 
-        public List<?> getComments() {
+        public List<CommentsBean> getComments() {
             return comments;
         }
 
-        public void setComments(List<?> comments) {
+        public void setComments(List<CommentsBean> comments) {
             this.comments = comments;
         }
 
@@ -258,6 +258,102 @@ public class RecItemBean {
 
             public void setPraiseNum(String praiseNum) {
                 this.praiseNum = praiseNum;
+            }
+        }
+
+        public static class CommentsBean {
+            /**
+             * cid : 263
+             * content : %E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88%E5%93%88
+             * createTime : 2018-01-29T18:34:01
+             * jid : null
+             * mvp : null
+             * nickname : null
+             * praiseNum : 0
+             * uid : 11365
+             * wid : 273
+             */
+
+            private int cid;
+            private String content;
+            private String createTime;
+            private Object jid;
+            private Object mvp;
+            private Object nickname;
+            private int praiseNum;
+            private int uid;
+            private int wid;
+
+            public int getCid() {
+                return cid;
+            }
+
+            public void setCid(int cid) {
+                this.cid = cid;
+            }
+
+            public String getContent() {
+                return content;
+            }
+
+            public void setContent(String content) {
+                this.content = content;
+            }
+
+            public String getCreateTime() {
+                return createTime;
+            }
+
+            public void setCreateTime(String createTime) {
+                this.createTime = createTime;
+            }
+
+            public Object getJid() {
+                return jid;
+            }
+
+            public void setJid(Object jid) {
+                this.jid = jid;
+            }
+
+            public Object getMvp() {
+                return mvp;
+            }
+
+            public void setMvp(Object mvp) {
+                this.mvp = mvp;
+            }
+
+            public Object getNickname() {
+                return nickname;
+            }
+
+            public void setNickname(Object nickname) {
+                this.nickname = nickname;
+            }
+
+            public int getPraiseNum() {
+                return praiseNum;
+            }
+
+            public void setPraiseNum(int praiseNum) {
+                this.praiseNum = praiseNum;
+            }
+
+            public int getUid() {
+                return uid;
+            }
+
+            public void setUid(int uid) {
+                this.uid = uid;
+            }
+
+            public int getWid() {
+                return wid;
+            }
+
+            public void setWid(int wid) {
+                this.wid = wid;
             }
         }
     }
