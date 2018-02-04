@@ -20,6 +20,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="7dp"
             android:text="检查更新"
             android:textSize="19dp" />
 
@@ -32,6 +33,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="7dp"
             android:text="意见反馈"
             android:textSize="19dp" />
     </LinearLayout>
@@ -46,6 +48,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="7dp"
             android:text="关于一刻钟"
             android:textSize="19dp" />
 
@@ -58,6 +61,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="7dp"
             android:text="清除缓存"
             android:textSize="19dp" />
     </LinearLayout>

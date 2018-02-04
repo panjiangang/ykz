@@ -145,7 +145,7 @@ public class SatinActivity extends AppCompatActivity {
     protected void showChoosePicDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("上传图片");
-        String[] items = {"选择本地图片片", "拍照"};
+        String[] items = {"选择本地图片", "拍照"};
         builder.setNegativeButton("取消", null);
         builder.setItems(items, new DialogInterface.OnClickListener() {
 
