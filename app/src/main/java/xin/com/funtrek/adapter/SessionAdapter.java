@@ -1,7 +1,6 @@
 package xin.com.funtrek.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import xin.com.funtrek.R;
-import xin.com.funtrek.activitys.SessionXQActivity;
 import xin.com.funtrek.http.bean.SessionBean;
 
 /**
@@ -42,37 +40,38 @@ public class SessionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         Glide.with(context).load(sessionBean.data.get(position).imgUrls).into(((SessionViewHolder) holder).leftImg);
         ((SessionViewHolder) holder).nameText.setText(sessionBean.data.get(position).user.nickname);
         ((SessionViewHolder) holder).timeText.setText(sessionBean.data.get(position).createTime);
+        ((SessionViewHolder) holder).contentText.setText(sessionBean.data.get(position).content);
 //        Glide.with(context).load(sessionBean.data.get(position)).into(((SessionViewHolder)holder).rightImg);
 
-        ((SessionViewHolder) holder).leftImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, SessionXQActivity.class);
-                intent.putExtra("uid", sessionBean.data.get(position).uid);
-                intent.putExtra("imgUrls",sessionBean.data.get(position).imgUrls+"");
-                context.startActivity(intent);
-            }
-        });
-
-        ((SessionViewHolder) holder).timeText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, SessionXQActivity.class);
-                intent.putExtra("uid", sessionBean.data.get(position).uid);
-                intent.putExtra("imgUrls",sessionBean.data.get(position).imgUrls+"");
-                context.startActivity(intent);
-            }
-        });
-
-        ((SessionViewHolder) holder).nameText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, SessionXQActivity.class);
-                intent.putExtra("uid", sessionBean.data.get(position).uid);
-                intent.putExtra("imgUrls",sessionBean.data.get(position).imgUrls+"");
-                context.startActivity(intent);
-            }
-        });
+//        ((SessionViewHolder) holder).leftImg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, SessionXQActivity.class);
+//                intent.putExtra("uid", sessionBean.data.get(position).uid);
+//                intent.putExtra("imgUrls",sessionBean.data.get(position).imgUrls+"");
+//                context.startActivity(intent);
+//            }
+//        });
+//
+//        ((SessionViewHolder) holder).timeText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, SessionXQActivity.class);
+//                intent.putExtra("uid", sessionBean.data.get(position).uid);
+//                intent.putExtra("imgUrls",sessionBean.data.get(position).imgUrls+"");
+//                context.startActivity(intent);
+//            }
+//        });
+//
+//        ((SessionViewHolder) holder).nameText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, SessionXQActivity.class);
+//                intent.putExtra("uid", sessionBean.data.get(position).uid);
+//                intent.putExtra("imgUrls",sessionBean.data.get(position).imgUrls+"");
+//                context.startActivity(intent);
+//            }
+//        });
 
     }
 
@@ -86,7 +85,8 @@ public class SessionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private final ImageView leftImg;
         private final TextView nameText;
         private final TextView timeText;
-//        private final ImageView rightImg;
+        private final TextView contentText;
+        //        private final ImageView rightImg;
 
         public SessionViewHolder(View itemView) {
             super(itemView);
@@ -94,6 +94,7 @@ public class SessionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             leftImg = itemView.findViewById(R.id.session_item_img_left);
             nameText = itemView.findViewById(R.id.session_item_name);
             timeText = itemView.findViewById(R.id.session_item_time);
+            contentText = itemView.findViewById(R.id.session_item_content);
 //            rightImg = itemView.findViewById(R.id.session_item_img_right);
         }
     }
