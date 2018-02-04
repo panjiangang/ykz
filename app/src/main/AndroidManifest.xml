@@ -48,7 +48,7 @@
                 <data android:scheme="222222" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.SessionXQActivity" />
+        <activity android:name=".activitys.DetailsActivity" />
         <activity android:name=".activitys.MyConcern" />
         <activity
             android:name="com.tencent.connect.common.AssistActivity"

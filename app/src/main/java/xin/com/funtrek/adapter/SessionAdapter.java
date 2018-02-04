@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import xin.com.funtrek.R;
-import xin.com.funtrek.activitys.SessionXQActivity;
+import xin.com.funtrek.activitys.DetailsActivity;
 import xin.com.funtrek.http.bean.SessionBean;
 
 /**
@@ -45,7 +45,7 @@ public class SessionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ((SessionViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, SessionXQActivity.class);
+                Intent intent = new Intent(context, DetailsActivity.class);
                 context.startActivity(intent);
             }
         });
