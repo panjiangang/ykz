@@ -10,11 +10,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import xin.com.funtrek.R;
 import xin.com.funtrek.mvp.login.Login_view;
+import xin.com.funtrek.utils.MessageEvent;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -47,7 +50,7 @@ public class SettingActivity extends AppCompatActivity {
                 SharedPreferences.Editor edit = sp.edit();
                 edit.putBoolean("login", false);
                 edit.commit();
-//        EventBus.getDefault().post(new MessageEvent(true));
+                EventBus.getDefault().post(new MessageEvent("退出登录"));
                 startActivity(new Intent(SettingActivity.this, Login_view.class));
                 finish();
                 break;

@@ -5,17 +5,17 @@ package xin.com.funtrek.utils;
  */
 
 public class MessageEvent {
-    public boolean tag;
+    public String tag;
 
-    public MessageEvent(boolean tag){
+    public MessageEvent(String tag){
         this.tag = tag;
     }
 
-    public boolean isTag() {
+    public String isTag() {
         return tag;
     }
 
-    public void setTag(boolean tag) {
+    public void setTag(String tag) {
         this.tag = tag;
     }
 }

@@ -19,6 +19,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -32,7 +33,12 @@ import android.widget.Toast;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.inject.Inject;
 
@@ -50,6 +56,7 @@ import xin.com.funtrek.mvp.IModule;
 import xin.com.funtrek.mvp.main.Main_presenter;
 import xin.com.funtrek.mvp.main.Main_view;
 import xin.com.funtrek.utils.ImageUtils;
+import xin.com.funtrek.utils.MessageEvent;
 
 public class MainActivity extends BaseActivity<Main_view, Main_presenter> implements Main_view {
     @Inject
@@ -95,6 +102,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     protected static final int TAKE_PICTURE = 1;
     private static final int CROP_SMALL_PICTURE = 2;
     protected static Uri tempUri;
+    private boolean isExit = false;//返回键
 
     @Override
     protected int setLayout() {
@@ -113,6 +121,9 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
 
     @Override
     protected void initView() {
+
+        EventBus.getDefault().register(this);
+
         if (mRecommend == null) {
             mRecommend = new Recommend();
         }
@@ -340,7 +351,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
 
     @Override
     public void showData(UpPic bean) {
-        Log.e("", bean.getMsg() );
+        Log.e("", bean.getMsg());
         Toast.makeText(this, bean.getMsg(), Toast.LENGTH_SHORT).show();
     }
 
@@ -453,4 +464,48 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
 //            Toast.makeText(SatinActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
         }
     }
+
+    //按两次返回键退出
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            //音乐服务启动了，隐藏至通知栏
+            if (isExit) {
+                exit("再按一次隐藏至通知栏");
+            } else {
+                exit("再按一次退出程序");
+                mMainDrawlayout.closeDrawer(GravityCompat.START);
+            }
+        }
+        return false;
+    }
+
+    private void exit(String info) {
+        if (!isExit) {
+            isExit = true;
+            Toast.makeText(MainActivity.this, info, Toast.LENGTH_SHORT).show();
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isExit = false;
+                }
+            }, 2000);
+        } else {
+            finish();
+        }
+    }
+
+    @Subscribe
+    public void onMessageEvent(MessageEvent event) {
+        if (event.isTag().equals("退出登录")) {
+            finish();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
 }
