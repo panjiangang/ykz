@@ -14,6 +14,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import xin.com.funtrek.http.bean.ConcernBean;
 import xin.com.funtrek.http.bean.HotBean;
 import xin.com.funtrek.http.bean.HotLikeBean;
 import xin.com.funtrek.http.bean.RecBannerBean;
@@ -49,4 +50,10 @@ public interface ApiServce {
     Flowable <UpPic> upPicture(@QueryMap Map<String, String> map,
                                @Part("file") RequestBody description,
                                @Part MultipartBody.Part file);
+    //关注列表
+//    https://www.zhaoapi.cn/quarter/getFollowUsers?source=android&appVersion=101&token=C625F5867FC5F65790AAD571784C748F&uid=12272
+    @GET("quarter/getFollowUsers")
+    Flowable <ConcernBean> myConcern(@QueryMap() Map<String, String> map);
+
+
 }
