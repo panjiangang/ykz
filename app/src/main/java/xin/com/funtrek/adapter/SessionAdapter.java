@@ -1,7 +1,6 @@
 package xin.com.funtrek.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,9 +8,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import xin.com.funtrek.R;
-import xin.com.funtrek.activitys.DetailsActivity;
 import xin.com.funtrek.http.bean.SessionBean;
+import xin.com.funtrek.other.MyAnimation;
+
+//import xin.com.funtrek.activitys.DetailsActivity;
 
 /**
  * date:2018/1/25
@@ -19,7 +24,7 @@ import xin.com.funtrek.http.bean.SessionBean;
  * desc:
  */
 
-public class SessionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionViewHolder> {
 
     private Context context;
     private SessionBean sessionBean;
@@ -30,25 +35,59 @@ public class SessionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SessionAdapter.SessionViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = View.inflate(context, R.layout.session_layout_item, null);
         return new SessionViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-//        Glide.with(context).load(sessionBean.data.get(position)).into(((SessionViewHolder) holder).leftImg);
-        ((SessionViewHolder) holder).nameText.setText(sessionBean.data.get(position).user.nickname);
-        ((SessionViewHolder) holder).timeText.setText(sessionBean.data.get(position).createTime);
+    public void onBindViewHolder(SessionAdapter.SessionViewHolder holder, final int position) {
+
+        MyAnimation.add(holder.iconOpen, holder.report, holder.copylink, holder.shiled);
+
+        Glide.with(context).load(sessionBean.data.get(position).imgUrls).into(((SessionViewHolder) holder).sessionItemImgLeft);
+        ((SessionViewHolder) holder).sessionItemName.setText(sessionBean.data.get(position).user.nickname);
+        ((SessionViewHolder) holder).sessionItemTime.setText(sessionBean.data.get(position).createTime);
+        ((SessionViewHolder) holder).sessionItemContent.setText(sessionBean.data.get(position).content);
 //        Glide.with(context).load(sessionBean.data.get(position)).into(((SessionViewHolder)holder).rightImg);
 
-        ((SessionViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, DetailsActivity.class);
-                context.startActivity(intent);
-            }
-        });
+//        ((SessionViewHolder) holder).leftImg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public  oid onClick(View view) {
+//                Intent intent = new Intent(context, SessionXQActivity.class);
+//                intent.putExtra("uid", sessionBean.data.get(position).uid);
+//                intent.putExtra("imgUrls",sessionBean.data.get(position).imgUrls+"");
+//                context.startActivity(intent);
+//            }
+//        });
+//
+//        ((SessionViewHolder) holder).timeText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, SessionXQActivity.class);
+//                intent.putExtra("uid", sessionBean.data.get(position).uid);
+//                intent.putExtra("imgUrls",sessionBean.data.get(position).imgUrls+"");
+//                context.startActivity(intent);
+//            }
+//        });
+//
+//        ((SessionViewHolder) holder).nameText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, SessionXQActivity.class);
+//                intent.putExtra("uid", sessionBean.data.get(position).uid);
+//                intent.putExtra("imgUrls",sessionBean.data.get(position).imgUrls+"");
+//                context.startActivity(intent);
+//            }
+//        });
+
+//        ((SessionViewHolder) holder).itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(context, DetailsActivity.class);
+//                context.startActivity(intent);
+//            }
+//        });
     }
 
     @Override
@@ -56,21 +95,27 @@ public class SessionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return sessionBean.data.size();
     }
 
-    class SessionViewHolder extends RecyclerView.ViewHolder {
+    static class SessionViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.session_item_img_left)
+        ImageView sessionItemImgLeft;
+        @BindView(R.id.session_item_name)
+        TextView sessionItemName;
+        @BindView(R.id.shiled)
+        ImageView shiled;
+        @BindView(R.id.copylink)
+        ImageView copylink;
+        @BindView(R.id.report)
+        ImageView report;
+        @BindView(R.id.icon_open)
+        ImageView iconOpen;
+        @BindView(R.id.session_item_time)
+        TextView sessionItemTime;
+        @BindView(R.id.session_item_content)
+        TextView sessionItemContent;
 
-        private final ImageView leftImg;
-        private final TextView nameText;
-        private final TextView timeText;
-//        private final ImageView rightImg;
-
-        public SessionViewHolder(View itemView) {
-            super(itemView);
-
-            leftImg = itemView.findViewById(R.id.session_item_img_left);
-            nameText = itemView.findViewById(R.id.session_item_name);
-            timeText = itemView.findViewById(R.id.session_item_time);
-//            rightImg = itemView.findViewById(R.id.session_item_img_right);
+        SessionViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
         }
     }
-
 }
