@@ -128,7 +128,7 @@ public class VideoActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.button1:
-                        Toast.makeText(VideoActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(VideoActivity.this, msg, Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.button2:
                         Toast.makeText(VideoActivity.this, "取消点赞", Toast.LENGTH_SHORT).show();

@@ -3,11 +3,13 @@
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    ><com.facebook.drawee.view.SimpleDraweeView
+    >
+    <com.facebook.drawee.view.SimpleDraweeView
     android:id="@+id/simp"
     android:scaleType="fitXY"
     android:padding="4dp"
-    fresco:failureImage="@drawable/ic_launcher"
+    fresco:failureImage="@drawable/icon_failure"
+        fresco:failureImageScaleType="centerInside"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
 </LinearLayout>
