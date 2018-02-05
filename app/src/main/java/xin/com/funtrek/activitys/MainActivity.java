@@ -5,7 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -16,12 +18,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -55,10 +59,11 @@ import xin.com.funtrek.mvp.DaggerIComponent;
 import xin.com.funtrek.mvp.IModule;
 import xin.com.funtrek.mvp.main.Main_presenter;
 import xin.com.funtrek.mvp.main.Main_view;
+import xin.com.funtrek.other.ThemeManager;
 import xin.com.funtrek.utils.ImageUtils;
 import xin.com.funtrek.utils.MessageEvent;
 
-public class MainActivity extends BaseActivity<Main_view, Main_presenter> implements Main_view {
+public class MainActivity extends BaseActivity<Main_view, Main_presenter> implements Main_view ,ThemeManager.OnThemeChangeListener{
     @Inject
     Main_presenter mMain_presenter;
     @BindView(R.id.toolbar)
@@ -103,6 +108,7 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     private static final int CROP_SMALL_PICTURE = 2;
     protected static Uri tempUri;
     private boolean isExit = false;//返回键
+    private ActionBar supportActionBar;
 
     @Override
     protected int setLayout() {
@@ -123,7 +129,8 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     protected void initView() {
 
         EventBus.getDefault().register(this);
-
+        ThemeManager.registerThemeChangeListener(this);
+        supportActionBar = getSupportActionBar();
         if (mRecommend == null) {
             mRecommend = new Recommend();
         }
@@ -139,7 +146,6 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
         mCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent takeIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 it.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(path)));
@@ -297,14 +303,11 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
         });
         //日夜间
         Switch aSwitch = mNavView2.getHeaderView(0).findViewById(R.id.day_night);
-        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        aSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    Toast.makeText(MainActivity.this, "T", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "F", Toast.LENGTH_SHORT).show();
-                }
+            public void onClick(View v) {
+                ThemeManager.setThemeMode(ThemeManager.getThemeMode() == ThemeManager.ThemeMode.DAY
+                        ? ThemeManager.ThemeMode.NIGHT : ThemeManager.ThemeMode.DAY);
             }
         });
         //本地作品
@@ -506,6 +509,30 @@ public class MainActivity extends BaseActivity<Main_view, Main_presenter> implem
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        ThemeManager.unregisterThemeChangeListener(this);
     }
+
+    public void initTheme() {
+        navView.setBackgroundColor(getResources().getColor(ThemeManager.getCurrentThemeRes(MainActivity.this, R.color.backgroundColor)));
+        mFrame.setBackgroundColor(getResources().getColor(ThemeManager.getCurrentThemeRes(MainActivity.this, R.color.backgroundColor)));
+        mToolbar.setBackgroundColor(getResources().getColor(ThemeManager.getCurrentThemeRes(MainActivity.this, R.color.backgroundColor)));
+        mBottomNavBar.setBackgroundColor(getResources().getColor(ThemeManager.getCurrentThemeRes(MainActivity.this, R.color.backgroundColor)));
+        mNavView2.setBackgroundColor(getResources().getColor(ThemeManager.getCurrentThemeRes(MainActivity.this, R.color.backgroundColor)));
+        mMainDrawlayout.setBackgroundColor(getResources().getColor(ThemeManager.getCurrentThemeRes(MainActivity.this, R.color.backgroundColor)));
+            // 设置标题栏颜色
+        if(supportActionBar != null){
+            supportActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(ThemeManager.getCurrentThemeRes(MainActivity.this, R.color.colorPrimary))));
+        }
+        // 设置状态栏颜色
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.setStatusBarColor(getResources().getColor(ThemeManager.getCurrentThemeRes(MainActivity.this, R.color.colorPrimary)));
+        }
+    }
+    @Override
+    public void onThemeChanged() {
+        initTheme();
+    }
+
 
 }

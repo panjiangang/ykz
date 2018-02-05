@@ -71,6 +71,7 @@
             android:layout_marginTop="5dp"
             android:scaleType="fitXY"
             android:src="@drawable/report1" />
+        android:src="@drawable/report1" />
 
         <ImageView
             android:id="@+id/icon_open"

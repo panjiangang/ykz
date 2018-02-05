@@ -7,7 +7,6 @@ import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -67,9 +66,10 @@ public interface ApiServce {
     //更改用户图片
     @Multipart
     @POST("file/upload")
-    Flowable<UpPic> upPicture(@QueryMap Map<String, String> map,
-                              @Part("file") RequestBody description,
-                              @Part MultipartBody.Part file);
+    Flowable <UpPic> upPicture(@QueryMap Map<String, String> map,
+                               @Part("file") RequestBody description,
+                               @Part MultipartBody.Part file);
+
 
     //关注列表
 //    https://www.zhaoapi.cn/quarter/getFollowUsers?source=android&appVersion=101&token=C625F5867FC5F65790AAD571784C748F&uid=12272

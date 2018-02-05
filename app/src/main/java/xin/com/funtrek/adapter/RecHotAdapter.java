@@ -26,7 +26,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.jzvd.JZVideoPlayerStandard;
 import xin.com.funtrek.R;
-import xin.com.funtrek.activitys.DetailsActivity;
 import xin.com.funtrek.http.bean.Login_Success_Bean;
 import xin.com.funtrek.http.bean.RecBannerBean;
 import xin.com.funtrek.http.bean.RecItemBean;
