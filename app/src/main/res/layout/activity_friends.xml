@@ -6,4 +6,7 @@
     android:layout_height="match_parent"
     >
 <include layout="@layout/toolbarlayout"/>
+    <include layout="@layout/fragment_rec_hot"/>
+
+
 </android.support.constraint.ConstraintLayout>
