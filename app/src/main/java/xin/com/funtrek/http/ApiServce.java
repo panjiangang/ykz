@@ -7,7 +7,6 @@ import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -21,7 +20,6 @@ import xin.com.funtrek.http.bean.Login_Success_Bean;
 import xin.com.funtrek.http.bean.RecBannerBean;
 import xin.com.funtrek.http.bean.RecItemBean;
 import xin.com.funtrek.http.bean.SessionBean;
-import xin.com.funtrek.http.bean.SessionXQBean;
 import xin.com.funtrek.http.bean.UpPic;
 
 /**
@@ -72,11 +70,6 @@ public interface ApiServce {
                                @Part("file") RequestBody description,
                                @Part MultipartBody.Part file);
 
-    @GET("/quarter/getUserVideos")
-    Flowable<SessionXQBean> sessionXqUrl(@QueryMap Map<String, String> map);
-    Flowable<UpPic> upPicture(@QueryMap Map<String, String> map,
-                              @Part("file") RequestBody description,
-                              @Part MultipartBody.Part file);
 
     //关注列表
 //    https://www.zhaoapi.cn/quarter/getFollowUsers?source=android&appVersion=101&token=C625F5867FC5F65790AAD571784C748F&uid=12272

@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 import xin.com.funtrek.R;
 //import xin.com.funtrek.activitys.SessionXQActivity;
-import xin.com.funtrek.activitys.DetailsActivity;
 import xin.com.funtrek.http.bean.SessionXQBean;
 
 /**
