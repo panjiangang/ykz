@@ -71,6 +71,7 @@ public class VideoActivity extends AppCompatActivity {
         hotposition = getIntent().getIntExtra("Hotposition", 1);
 
         vearbylist = (List<HotBean.DataBean>) getIntent().getSerializableExtra("Vearbylist");
+
         vearbyposition = getIntent().getIntExtra("Vearbyposition", 1);
 
         if (hotlist != null) {
@@ -89,6 +90,8 @@ public class VideoActivity extends AppCompatActivity {
                 simp.setImageURI(vearbylist.get(vearbyposition).getUser().getIcon());
 
                 videoplayer.setUp(vearbylist.get(vearbyposition).getVideoUrl(), JZVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, vearbylist.get(vearbyposition).getWorkDesc() + "");
+                text1.setText(vearbylist.get(vearbyposition).getWorkDesc() + "");
+                text2.setText(vearbylist.get(vearbyposition).getPlayNum() + "次播放    " + vearbylist.get(vearbyposition).getCreateTime().split("T")[0] + "  " + vearbylist.get(vearbyposition).getCreateTime().split("T")[1]);
 
             }
 
@@ -119,33 +122,7 @@ public class VideoActivity extends AppCompatActivity {
                         System.out.println("VideoActivitythrowable = " + throwable);
                     }
                 });
-        listview.setAdapter(new BaseAdapter() {
-            @Override
-            public int getCount() {
-                return hotlist.get(hotposition).getComments().size();
-            }
 
-            @Override
-            public Object getItem(int position) {
-                return hotlist.get(hotposition).getComments().get(position);
-            }
-
-            @Override
-            public long getItemId(int position) {
-                return position;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-
-                View inflate = convertView.inflate(VideoActivity.this, R.layout.activity_video_listadapter, null);
-                TextView textname = inflate.findViewById(R.id.textname);
-                TextView textcontent = inflate.findViewById(R.id.textcontent);
-                textname.setText(hotlist.get(hotposition).getComments().get(position).getNickname() + ":");
-                textcontent.setText(hotlist.get(hotposition).getComments().get(position).getContent());
-                return inflate;
-            }
-        });
         radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -159,7 +136,62 @@ public class VideoActivity extends AppCompatActivity {
                 }
             }
         });
+        if (hotlist != null) {
+            listview.setAdapter(new BaseAdapter() {
+                @Override
+                public int getCount() {
+                    return hotlist.get(hotposition).getComments().size();
+                }
+                @Override
+                public Object getItem(int position) {
+                    return hotlist.get(hotposition).getComments().get(position);
+                }
 
+                @Override
+                public long getItemId(int position) {
+                    return position;
+                }
+
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+
+                    View inflate = convertView.inflate(VideoActivity.this, R.layout.activity_video_listadapter, null);
+                    TextView textname = inflate.findViewById(R.id.textname);
+                    TextView textcontent = inflate.findViewById(R.id.textcontent);
+                    textname.setText(hotlist.get(hotposition).getComments().get(position).getNickname()+":");
+                    textcontent.setText(hotlist.get(hotposition).getComments().get(position).getContent());
+                    return inflate;
+                }
+            });
+        }
+        if (vearbylist != null) {
+            listview.setAdapter(new BaseAdapter() {
+                @Override
+                public int getCount() {
+                    return vearbylist.get(vearbyposition).getComments().size();
+                }
+                @Override
+                public Object getItem(int position) {
+                    return vearbylist.get(vearbyposition).getComments().get(position);
+                }
+
+                @Override
+                public long getItemId(int position) {
+                    return position;
+                }
+
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+
+                    View inflate = convertView.inflate(VideoActivity.this, R.layout.activity_video_listadapter, null);
+                    TextView textname = inflate.findViewById(R.id.textname);
+                    TextView textcontent = inflate.findViewById(R.id.textcontent);
+                    textname.setText(vearbylist.get(vearbyposition).getComments().get(position).getNickname()+":");
+                    textcontent.setText(vearbylist.get(vearbyposition).getComments().get(position).getContent());
+                    return inflate;
+                }
+            });
+        }
     }
 
     @OnClick({R.id.video_fanhui_hot, R.id.share, R.id.simp})

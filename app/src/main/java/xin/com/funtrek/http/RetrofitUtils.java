@@ -57,16 +57,26 @@ public class RetrofitUtils {
                 .retryOnConnectionFailure(false)
                 .build();
         if (retrofit == null) {
+
             retrofit = new Retrofit.Builder()
+
                     .baseUrl(url)
+
                     .client(okHttpClient)
+
                     .addConverterFactory(GsonConverterFactory.create())
+
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+
                     .callFactory(okHttpClient)
+
                     .build();
         }
+
         return retrofit;
+
     }
+
     public <T> T getApiService(String url, Class<T> cl) {
         Retrofit retrofit = getRetrofit(url);
         return retrofit.create(cl);
