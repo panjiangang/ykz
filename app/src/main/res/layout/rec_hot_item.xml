@@ -47,8 +47,8 @@
             android:layout_width="33dp"
             android:layout_height="33dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
             android:scaleType="fitXY"
             android:src="@drawable/shiled1" />
 
@@ -57,8 +57,8 @@
             android:layout_width="33dp"
             android:layout_height="33dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
             android:scaleType="fitXY"
             android:src="@drawable/copylink1" />
 
@@ -67,8 +67,8 @@
             android:layout_width="33dp"
             android:layout_height="33dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
             android:scaleType="fitXY"
             android:src="@drawable/report1" />
 
@@ -77,20 +77,48 @@
             android:layout_width="33dp"
             android:layout_height="33dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_marginRight="8dp"
+            android:layout_marginTop="5dp"
             android:scaleType="fitXY"
             android:src="@drawable/icon_open" />
-    </RelativeLayout>
 
-    <TextView
-        android:id="@+id/workDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:text="workdesc"
-        android:textSize="16dp" />
+        <TextView
+            android:id="@+id/jb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/icon_open"
+            android:layout_below="@+id/icon_open"
+            android:paddingRight="3dp"
+            android:text="举报" />
+
+        <TextView
+            android:id="@+id/fz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/icon_open"
+            android:layout_below="@+id/icon_open"
+            android:paddingRight="5dp"
+            android:text="复制链接" />
+
+        <TextView
+            android:id="@+id/pb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/icon_open"
+            android:layout_below="@+id/icon_open"
+            android:paddingRight="5dp"
+            android:text="屏蔽" />
+
+        <TextView
+            android:id="@+id/workDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/icon"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:text="workdesc"
+            android:textSize="16dp" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"

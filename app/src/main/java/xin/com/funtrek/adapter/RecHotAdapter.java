@@ -31,6 +31,7 @@ import xin.com.funtrek.http.bean.Login_Success_Bean;
 import xin.com.funtrek.http.bean.RecBannerBean;
 import xin.com.funtrek.http.bean.RecItemBean;
 import xin.com.funtrek.mvp.recommend.RecHotPresenter;
+import xin.com.funtrek.other.DdyAnimation;
 import xin.com.funtrek.other.GlideImageLoader;
 import xin.com.funtrek.other.MyAnimation;
 
@@ -72,40 +73,56 @@ public class RecHotAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, final ViewGroup parent) {
 
-        if (getItemViewType(position) == 0 && b) {
-            AdHolder adHolder;
+        final VideosHolder videosHolder;
+        if (convertView == null) {
+            videosHolder = new VideosHolder();
 
-            if (convertView == null) {
+            if (getItemViewType(position) == 0 && b) {
                 convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.rec_banner, parent, false);
-                adHolder = new AdHolder(convertView);
-                convertView.setTag(adHolder);
-            } else adHolder = (AdHolder) convertView.getTag();
+                videosHolder.banner = convertView.findViewById(R.id.banner);
 
-            adHolder.banner.setBannerStyle(BannerConfig.NOT_INDICATOR).setImageLoader(new GlideImageLoader()).setImages(images).start();
-        } else if (getItemViewType(position) == 0 && u) {
-            UserHolder userHolder;
-
-            if (convertView == null) {
+            } else if (getItemViewType(position) == 0 && u) {
                 convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.details_item, parent, false);
-                userHolder = new UserHolder(convertView);
-                convertView.setTag(userHolder);
-            } else userHolder = (UserHolder) convertView.getTag();
+                videosHolder.detailsUpSdv = convertView.findViewById(R.id.details_up_sdv);
+                videosHolder.detailsUpFans = convertView.findViewById(R.id.details_up_fans);
 
-            token1 = user.getToken();
-
-            userHolder.detailsUpSdv.setImageURI((String) user.getIcon());
-            userHolder.detailsUpFans.setText(new Double((Double) user.getFans()).intValue() + " 粉丝  |    " + new Double((Double) user.getFollow()).intValue() + "关注");
-        } else {
-            final VideosHolder videosHolder;
-
-            if (convertView == null) {
-                convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.rec_hot_item, parent, false);
-                videosHolder = new VideosHolder(convertView);
-                convertView.setTag(videosHolder);
             } else {
-                videosHolder = (VideosHolder) convertView.getTag();
-            }
+                convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.rec_hot_item, parent, false);
 
+                videosHolder.icon = convertView.findViewById(R.id.icon);
+                videosHolder.nickname = convertView.findViewById(R.id.nickname);
+                videosHolder.createTime = convertView.findViewById(R.id.createTime);
+                videosHolder.iconOpen = convertView.findViewById(R.id.icon_open);
+                videosHolder.report = convertView.findViewById(R.id.report);
+                videosHolder.copylink = convertView.findViewById(R.id.copylink);
+                videosHolder.shiled = convertView.findViewById(R.id.shiled);
+                videosHolder.jb = convertView.findViewById(R.id.jb);
+                videosHolder.fz = convertView.findViewById(R.id.fz);
+                videosHolder.pb = convertView.findViewById(R.id.pb);
+                videosHolder.workDesc = convertView.findViewById(R.id.workDesc);
+                videosHolder.vps = convertView.findViewById(R.id.vps);
+                videosHolder.favoriteNum = convertView.findViewById(R.id.favoriteNum);
+                videosHolder.playNum = convertView.findViewById(R.id.playNum);
+                videosHolder.praiseNum = convertView.findViewById(R.id.praiseNum);
+                videosHolder.commentNum = convertView.findViewById(R.id.commentNum);
+                videosHolder.ll = convertView.findViewById(R.id.ll);
+                videosHolder.firstName = convertView.findViewById(R.id.first_name);
+                videosHolder.comFirst = convertView.findViewById(R.id.com_first);
+                videosHolder.secondName = convertView.findViewById(R.id.second_name);
+                videosHolder.comSecond = convertView.findViewById(R.id.com_second);
+            }
+            convertView.setTag(videosHolder);
+        } else videosHolder = (VideosHolder) convertView.getTag();
+
+        if (getItemViewType(position) == 0 && b) {
+            videosHolder.banner.setBannerStyle(BannerConfig.NOT_INDICATOR).setImageLoader(new GlideImageLoader()).setImages(images).start();
+
+        } else if (getItemViewType(position) == 0 && u) {
+            token1 = user.getToken();
+            videosHolder.detailsUpSdv.setImageURI((String) user.getIcon());
+            videosHolder.detailsUpFans.setText(new Double((Double) user.getFans()).intValue() + " 粉丝  |    " + new Double((Double) user.getFollow()).intValue() + "关注");
+
+        } else {
             if (u) {
                 videosHolder.icon.setImageURI((String) user.getIcon());
 
@@ -131,7 +148,7 @@ public class RecHotAdapter extends BaseAdapter {
             String[] split = videos.get(position).getCreateTime().split("T");
             videosHolder.createTime.setText(split[0] + "  " + split[1]);
 
-            MyAnimation.add(videosHolder.iconOpen, videosHolder.report, videosHolder.copylink, videosHolder.shiled);
+            DdyAnimation.add(videosHolder.iconOpen, videosHolder.report, videosHolder.copylink, videosHolder.shiled, videosHolder.jb, videosHolder.fz, videosHolder.pb);
 
             String workDesc = (String) videos.get(position).getWorkDesc();
             videosHolder.workDesc.setText(workDesc == null ? "无题" : workDesc);
@@ -286,72 +303,39 @@ public class RecHotAdapter extends BaseAdapter {
     }
 
     static class VideosHolder {
-        @BindView(R.id.icon)
         SimpleDraweeView icon;
-        @BindView(R.id.nickname)
         TextView nickname;
-        @BindView(R.id.createTime)
         TextView createTime;
-        @BindView(R.id.shiled)
         ImageView shiled;
-        @BindView(R.id.copylink)
         ImageView copylink;
-        @BindView(R.id.report)
         ImageView report;
-        @BindView(R.id.icon_open)
         ImageView iconOpen;
-        @BindView(R.id.workDesc)
+        TextView jb;
+        TextView fz;
+        TextView pb;
         TextView workDesc;
-        @BindView(R.id.vps)
         JZVideoPlayerStandard vps;
-        @BindView(R.id.ll)
-        LinearLayout ll;
-        @BindView(R.id.praiseNum)
         TextView praiseNum;
-        @BindView(R.id.favoriteNum)
         TextView favoriteNum;
-        @BindView(R.id.playNum)
         TextView playNum;
-        @BindView(R.id.commentNum)
         TextView commentNum;
-        @BindView(R.id.first_name)
+        LinearLayout ll;
         TextView firstName;
-        @BindView(R.id.com_first)
         TextView comFirst;
-        @BindView(R.id.second_name)
         TextView secondName;
-        @BindView(R.id.com_second)
         TextView comSecond;
 
-        VideosHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
-    }
+        Banner banner;
 
-    static class UserHolder {
-        @BindView(R.id.details_up_bgimg)
         ImageView detailsUpBgimg;
-        @BindView(R.id.details_up_return)
         ImageView detailsUpReturn;
-        @BindView(R.id.details_up_title)
         TextView detailsUpTitle;
-        @BindView(R.id.details_up_share)
         ImageView detailsUpShare;
-        @BindView(R.id.details_up_news)
         ImageView detailsUpNews;
-        @BindView(R.id.details_up_fans)
         TextView detailsUpFans;
-        @BindView(R.id.details_up_follow)
         Button detailsUpFollow;
-        @BindView(R.id.details_up_works)
         TextView detailsUpWorks;
-        @BindView(R.id.details_up_relativeLayout)
         RelativeLayout detailsUpRelativeLayout;
-        @BindView(R.id.details_up_sdv)
         SimpleDraweeView detailsUpSdv;
-
-        UserHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
     }
 }
