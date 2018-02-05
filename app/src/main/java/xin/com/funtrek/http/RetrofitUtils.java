@@ -46,10 +46,11 @@ public class RetrofitUtils {
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(httpLoggingInterceptor)
                 .addInterceptor(new HttpInterceptor())
                 .readTimeout(2000, TimeUnit.SECONDS)
-                .writeTimeout(2000,TimeUnit.SECONDS)
-                .connectTimeout(2000,TimeUnit.SECONDS)
+                .writeTimeout(2000, TimeUnit.SECONDS)
+                .connectTimeout(2000, TimeUnit.SECONDS)
                 .addInterceptor(httpLoggingInterceptor)
                 .readTimeout(2000, TimeUnit.SECONDS)
                 .writeTimeout(2000, TimeUnit.SECONDS)

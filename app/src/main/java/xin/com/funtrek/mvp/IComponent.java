@@ -3,6 +3,9 @@ package xin.com.funtrek.mvp;
 
 import dagger.Component;
 import xin.com.funtrek.activitys.CollectActivity;
+import xin.com.funtrek.activitys.DetailsActivity;
+import xin.com.funtrek.activitys.FriendsActivity;
+import xin.com.funtrek.activitys.CollectActivity;
 import xin.com.funtrek.activitys.MainActivity;
 import xin.com.funtrek.activitys.MyConcern;
 import xin.com.funtrek.framgments.Picture;
@@ -43,6 +46,12 @@ public interface IComponent {
     void inject(RecHotPresenter recHotPresenter);
 
     void inject(RecAttentionFramgent reAttentionFramgent);
+
     void injectMyConcern(MyConcern myConcern);
+
+    void inject(FriendsActivity friendsActivity);
+
     void inject_Collect(CollectActivity collectActivity);
+
+    void inject(DetailsActivity detailsActivity);
 }
